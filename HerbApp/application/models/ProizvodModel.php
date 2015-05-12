@@ -35,5 +35,32 @@ class ProizvodModel extends CI_Model{
         $this->db->where('idProizvoda', $id);
         $this->db->delete('proizvod');
     }
+    
+    public function getAll(){
+        $svi = $this->db->get('proizvod');
+        return $svi->result();
+    }
+    
+    public function getById($id){
+        
+        $this->db->select();
+        $this->db->from('proizvod');
+        $this->db->where('idProizvoda', $id);
+        $upit = $this->db->get();
+        
+        $res = $upit->result();
+        if($upit->num_rows() > 0)
+        return $res[0];
+        else
+            return null;
+    }
+    
+    public function getSirovine($id){
+        $this->db->select();
+        $this->db->from('proizvodsadrzi');
+        $this->db->where('idProizvod', $id);
+        $upit = $this->db->get();
+        return $upit->result();
+    }
 }
 ?>
