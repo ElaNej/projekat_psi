@@ -30,16 +30,24 @@ class Login extends CI_Controller{
         }
         else {
             if(strcmp($korisnik->kategorija, 'zapProizvodnja') == 0){
-                $this->template->load('proizvodnjaTemplate', 'proizvodnja/proizvodiPregled', null);
+                session_start();
+                $_SESSION['korisnikId'] = $korisnik->idKor;
+                 redirect('proizvodnja/listaProizvoda');
                     }
           else if(strcmp($korisnik->kategorija, 'zapNabavka') == 0){
-              $this->template->load('nabavkaTemplate', 'nabavka/zahteviPregled', null);
+                session_start();
+                $_SESSION['korisnikId'] = $korisnik->idKor;
+                redirect('nabavka/listaZahtevi');
                     }
           else if(strcmp($korisnik->kategorija, 'zapMagacin') == 0){
-              $this->template->load('magacinTemplate', 'magacin/magacinPregled', null);
+                session_start();
+                $_SESSION['korisnikId'] = $korisnik->idKor;
+                redirect('magacin/listaMagacin');
                     }
           else if(strcmp($korisnik->kategorija, 'admin') == 0){
-              $this->template->load('adminTemplate', 'admin/menuPage', null);
+                session_start();
+                $_SESSION['korisnikId'] = $korisnik->idKor;
+                $this->template->load('adminTemplate', 'admin/menuPage', null);
                     }
              }
     }

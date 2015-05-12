@@ -1,11 +1,52 @@
 <?php
 
 //Sva komunikacija sa bazom podataka se nalazi u Modelima
-//Kada god se napravi nov model dodati ga u application/confin/autoload.php u autoload model array(poslednja linija autoload.php) 
+//Kada god se napravi nov model dodati ga u application/confin/autoload.php u autoload model array(poslednja linija autoload.php)
+//Svaki model treba minimalno  da ima CRUD metode(create, update, use/find, delete)
 class KorisnikModel extends CI_Model{
     
-    //Proverava da li je korisnik sa zadatim korisnickim imenom i lozinkom u bazi i vraca kategoriju korisnika
+    //Funkcija za kreiranje korisnika
+    public function create($korisnickoIme, $ime, $prezime, $lozinka, $email, $kategorija, $zvanje, $brTel){
+        
+        $korisnik = array(
+            'korisnickoIme' => $korisnickoIme,
+            'ime' => $ime,
+            'prezime' => $prezime,
+            'lozinka' => $lozinka,
+            'e-mail' => $email,
+            'kategorija' => $kategorija,
+            'zvanje' => $zvanje,
+            'brTel' => $brTel,
+            );
+        
+        $this->db->insert('korisnik',$korisnik);
+    }
     
+    //Ukoliko odredjeno polje ne treba da se update-uje proslediti vrednost starog podatka, nikako null!
+    //Id odredjuje koji korisnik se update-uje.
+    public function update($id,$korisnickoIme, $ime, $prezime, $lozinka, $email, $kategorija, $zvanje, $brTel){
+        
+        $korisnik = array(
+            'korisnickoIme' => $korisnickoIme,
+            'ime' => $ime,
+            'prezime' => $prezime,
+            'lozinka' => $lozinka,
+            'e-mail' => $email,
+            'kategorija' => $kategorija,
+            'zvanje' => $zvanje,
+            'brTel' => $brTel,
+            );
+        
+        $this->db->where('idKor', $id);
+        $this->db->update('korisnik', $korisnik);
+    }
+    
+    public function delete($id){
+        $this->db->where('idKor', $id);
+        $this->db->delete('korisnik');
+    }
+    
+    //Proverava da li je korisnik sa zadatim korisnickim imenom i lozinkom u bazi i vraca kategoriju korisnika 
     public function getLoginKategorija($korIme, $lozinka){
         
         $this->db->select();
