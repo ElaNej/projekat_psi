@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `ime` varchar(20) NOT NULL,
   `prezime` varchar(20) NOT NULL,
   `lozinka` varchar(20) NOT NULL,
-  `email` varchar(40) NOT NULL,
+  `e-mail` varchar(40) NOT NULL,
   `kategorija` varchar(20) NOT NULL,
   `zvanje` varchar(30) NOT NULL,
   `brTel` varchar(20) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
 -- Dumping data for table `korisnik`
 --
 
-INSERT INTO `korisnik` (`idKor`, `korisnickoIme`, `ime`, `prezime`, `lozinka`, `email`, `kategorija`, `zvanje`, `brTel`) VALUES
+INSERT INTO `korisnik` (`idKor`, `korisnickoIme`, `ime`, `prezime`, `lozinka`, `e-mail`, `kategorija`, `zvanje`, `brTel`) VALUES
 (1, 'miki', '', '', 'miki123', '', 'zapProizvodnja', '', ''),
 (2, 'pera', '', '', 'pera123', '', 'zapNabavka', '', ''),
 (3, 'zika', '', '', 'zika123', '', 'zapMagacin', '', ''),
