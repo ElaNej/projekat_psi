@@ -8,7 +8,7 @@
         </p>
         
         <p>
-            Datum: <input type="text" id="datepicker">
+            Datum: <input type="text" name ="datum" id="datepicker">
         </p>
         
         <p>

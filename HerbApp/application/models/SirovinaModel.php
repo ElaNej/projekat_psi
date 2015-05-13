@@ -39,5 +39,29 @@ class SirovinaModel extends CI_Model{
         $this->db->where('idSirovine', $id);
         $this->db->delete('sirovina');
     }
+    
+    public function getById($id){
+        
+        $this->db->select();
+        $this->db->from('sirovina');
+        $this->db->where('idSirovine', $id);
+        $upit = $this->db->get();
+        
+        $res = $upit->result();
+        if($upit->num_rows() > 0)
+        return $res[0];
+        else
+            return null;
+    }
+    
+    public function addToRezervisano($id, $kol){
+        
+        $sirovina = $this->getById($id);
+        $magacinRez = $sirovina->magacinRez + $kol;
+        $new = array('magacinRez' => $magacinRez);
+        
+        $this->db->where('idSirovine', $id);
+        $this->db->update('sirovina', $new);
+    }
 }
 ?>

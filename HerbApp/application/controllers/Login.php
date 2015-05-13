@@ -17,9 +17,8 @@ class Login extends CI_Controller{
          * HerbApp ce najverovatnije imati po jedan template za svaku vrstu korisnika.
          * U svakom template-u ce biti definisan pocetni meni, dok ce telo da budu sadrzaji stranica
          */
-        //$this->zahtevNabavkaModel->create(4, date('Y-m-d H:i:s', strtotime('-3 day', time())), date('Y/m/d'), 'new');
-        //$this->zahtevProizvodnjaModel->create(4, date('Y-m-d'), 6);
-        $this->zahtevProizvodnjaModel->delete(2);
+        //$this->zahtevSirovinaModel->create(1,3, date('Y/m/d'), date('Y/m/d'), 200, 'complete');
+        //$this->zahtevSirovinaModel->delete(1,2);
         $this->template->load('myTemplate', 'login', null);
     }
     

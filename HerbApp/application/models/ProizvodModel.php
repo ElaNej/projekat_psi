@@ -55,7 +55,7 @@ class ProizvodModel extends CI_Model{
             return null;
     }
     
-    public function getSirovine($id){
+    public function getProizvodSadrzi($id){
         $this->db->select();
         $this->db->from('proizvodsadrzi');
         $this->db->where('idProizvod', $id);

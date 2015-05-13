@@ -3,15 +3,17 @@
 class ZahtevProizvodnjaModel extends CI_Model{
     
     //Funkcija za kreiranje zahteva
-    public function create($idProizvod, $datum, $kolicina){
+    public function create($idProizvod, $datum, $kolicina, $status){
         
         $proizvodnjaZahtev = array(
             'idProizvod' => $idProizvod,
             'datum' => $datum,
             'kolicina' => $kolicina,
+            'status' => $status,
             );
         
         $this->db->insert('zahtevproizvodnja',$proizvodnjaZahtev);
+        return $this->db->insert_id();
     }
     
     //Ukoliko odredjeno polje ne treba da se update-uje proslediti vrednost starog podatka, nikako null!
@@ -22,6 +24,7 @@ class ZahtevProizvodnjaModel extends CI_Model{
             'idProizvod' => $idProizvod,
             'datum' => $datum,
             'kolicina' => $kolicina,
+            'status' => $status,
             );
         
         $this->db->where('idZahtev',$id);
@@ -33,5 +36,7 @@ class ZahtevProizvodnjaModel extends CI_Model{
         $this->db->where('idZahtev', $id);
         $this->db->delete('zahtevproizvodnja');
     }
+    
+    //public function addProizvod;
 }
 ?>
