@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 11, 2015 at 07:44 PM
+-- Generation Time: May 13, 2015 at 03:50 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -62,7 +62,16 @@ CREATE TABLE IF NOT EXISTS `proizvod` (
   `serBr` varchar(30) NOT NULL,
   `kolicinaMagacin` int(11) NOT NULL,
   PRIMARY KEY (`idProizvoda`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `proizvod`
+--
+
+INSERT INTO `proizvod` (`idProizvoda`, `naziv`, `neto`, `serBr`, `kolicinaMagacin`) VALUES
+(1, 'prvi proizvod', '250 g', '1111', 12),
+(3, 'drugi proizvod', '40g', '4324', 10),
+(4, 'treci proizvod', '100g', '333', 12);
 
 -- --------------------------------------------------------
 
@@ -75,6 +84,15 @@ CREATE TABLE IF NOT EXISTS `proizvodsadrzi` (
   `idSirovina` int(11) NOT NULL,
   `kolicina` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `proizvodsadrzi`
+--
+
+INSERT INTO `proizvodsadrzi` (`idProizvod`, `idSirovina`, `kolicina`) VALUES
+(1, 1, 100),
+(1, 2, 200),
+(1, 3, 150);
 
 -- --------------------------------------------------------
 
@@ -105,34 +123,16 @@ CREATE TABLE IF NOT EXISTS `sirovina` (
   `magacinUk` int(11) NOT NULL,
   `magacinRez` int(11) NOT NULL,
   PRIMARY KEY (`idSirovine`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Table structure for table `zahtevnabavka`
+-- Dumping data for table `sirovina`
 --
 
-CREATE TABLE IF NOT EXISTS `zahtevnabavka` (
-  `idZahtevNab` int(11) NOT NULL AUTO_INCREMENT,
-  `idZahtevProiz` int(11) NOT NULL,
-  `datumKreiranja` date NOT NULL,
-  `datumNabavke` date NOT NULL,
-  `status` varchar(20) NOT NULL,
-  PRIMARY KEY (`idZahtevNab`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `zahtevnabavkasadrzi`
---
-
-CREATE TABLE IF NOT EXISTS `zahtevnabavkasadrzi` (
-  `idZahtev` int(11) NOT NULL,
-  `idSirovina` int(11) NOT NULL,
-  `kolicina` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `sirovina` (`idSirovine`, `naziv`, `serBr`, `vremePristiz`, `jedinica`, `magacinUk`, `magacinRez`) VALUES
+(1, 'nana', '56464', 11, 'g', 3000, 2000),
+(2, 'biljcica', '7657', 3, 'g', 500, 500),
+(3, 'gel', '4343', 4, 'g', 1000, 650);
 
 -- --------------------------------------------------------
 
@@ -145,21 +145,45 @@ CREATE TABLE IF NOT EXISTS `zahtevproizvodnja` (
   `idProizvod` int(11) NOT NULL,
   `datum` date NOT NULL,
   `kolicina` int(11) NOT NULL,
+  `status` varchar(20) NOT NULL,
   PRIMARY KEY (`idZahtev`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `zahtevproizvodnja`
+--
+
+INSERT INTO `zahtevproizvodnja` (`idZahtev`, `idProizvod`, `datum`, `kolicina`, `status`) VALUES
+(2, 1, '2015-05-13', 1, 'complete'),
+(4, 1, '2015-05-20', 2, 'incomplete');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `zahtevproizvodsadrzi`
+-- Table structure for table `zahtevsirovina`
 --
 
-CREATE TABLE IF NOT EXISTS `zahtevproizvodsadrzi` (
-  `idZahtev` int(11) NOT NULL,
-  `idSirovina` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `zahtevsirovina` (
+  `idZahtevProiz` int(11) NOT NULL,
+  `idZahtevSirov` int(11) NOT NULL,
+  `datumKreiranja` date NOT NULL,
+  `datumComplete` date NOT NULL,
   `kolicina` int(11) NOT NULL,
-  `rezervisano` int(11) NOT NULL
+  `rezervisano` int(11) NOT NULL,
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zahtevsirovina`
+--
+
+INSERT INTO `zahtevsirovina` (`idZahtevProiz`, `idZahtevSirov`, `datumKreiranja`, `datumComplete`, `kolicina`, `rezervisano`, `status`) VALUES
+(2, 1, '2015-05-13', '2015-05-13', 100, 100, 'complete'),
+(2, 2, '2015-05-13', '2015-05-13', 200, 200, 'complete'),
+(2, 3, '2015-05-13', '2015-05-13', 150, 150, 'complete'),
+(4, 1, '2015-05-13', '2015-05-13', 200, 200, 'complete'),
+(4, 2, '2015-05-13', '2015-05-13', 400, 200, 'pending'),
+(4, 3, '2015-05-13', '2015-05-13', 300, 300, 'complete');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
