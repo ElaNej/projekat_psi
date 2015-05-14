@@ -36,18 +36,19 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `kategorija` varchar(20) NOT NULL,
   `zvanje` varchar(30) NOT NULL,
   `brTel` varchar(20) NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`idKor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `korisnik`
 --
 
-INSERT INTO `korisnik` (`idKor`, `korisnickoIme`, `ime`, `prezime`, `lozinka`, `email`, `kategorija`, `zvanje`, `brTel`) VALUES
-(1, 'miki', '', '', 'miki123', '', 'zapProizvodnja', '', ''),
-(2, 'pera', '', '', 'pera123', '', 'zapNabavka', '', ''),
-(3, 'zika', '', '', 'zika123', '', 'zapMagacin', '', ''),
-(4, 'admin', '', '', 'admin123', '', 'admin', '', '');
+INSERT INTO `korisnik` (`idKor`, `korisnickoIme`, `ime`, `prezime`, `lozinka`, `email`, `kategorija`, `zvanje`, `brTel`, `status`) VALUES
+(1, 'miki', '', '', 'miki123', '', 'zapProizvodnja', '', '', 1),
+(2, 'pera', '', '', 'pera123', '', 'zapNabavka', '', '', 1),
+(3, 'zika', '', '', 'zika123', '', 'zapMagacin', '', '', 1),
+(4, 'admin', 'Ime', 'Prezime', 'admin123', '', 'admin', '', '', 1);
 
 -- --------------------------------------------------------
 
