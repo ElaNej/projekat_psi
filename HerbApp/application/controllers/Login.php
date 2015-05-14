@@ -19,7 +19,6 @@ class Login extends CI_Controller{
          */
         //$this->zahtevSirovinaModel->create(1,3, date('Y/m/d'), date('Y/m/d'), 200, 'complete');
         //$this->zahtevSirovinaModel->delete(1,2);
-        //$this->zahtevSirovinaModel->refreshAllZahtevi(2);
         $this->template->load('myTemplate', 'login', null);
     }
     
@@ -54,6 +53,11 @@ class Login extends CI_Controller{
                     }
              }
     }
-    
+
+    function registracija(){
+
+        $data['registracija'] = 0;
+        $this->load->view('admin/kreirajKorisnikaPrikaz', $data);
+    }
 }
 ?>

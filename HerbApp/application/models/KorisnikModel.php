@@ -6,7 +6,7 @@
 class KorisnikModel extends CI_Model{
     
     //Funkcija za kreiranje korisnika
-    public function create($korisnickoIme, $ime, $prezime, $lozinka, $email, $kategorija, $zvanje, $brTel){
+    public function create($korisnickoIme, $ime, $prezime, $lozinka, $email, $kategorija, $zvanje, $brTel, $status){
         
         $korisnik = array(
             'korisnickoIme' => $korisnickoIme,
@@ -17,6 +17,7 @@ class KorisnikModel extends CI_Model{
             'kategorija' => $kategorija,
             'zvanje' => $zvanje,
             'brTel' => $brTel,
+            'status' => $status,
             );
         
         $this->db->insert('korisnik',$korisnik);
@@ -24,7 +25,7 @@ class KorisnikModel extends CI_Model{
     
     //Ukoliko odredjeno polje ne treba da se update-uje proslediti vrednost starog podatka, nikako null!
     //Id odredjuje koji korisnik se update-uje.
-    public function update($id,$korisnickoIme, $ime, $prezime, $lozinka, $email, $kategorija, $zvanje, $brTel){
+    public function update($id,$korisnickoIme, $ime, $prezime, $lozinka, $email, $kategorija, $zvanje, $brTel, $status){
         
         $korisnik = array(
             'korisnickoIme' => $korisnickoIme,
@@ -35,6 +36,7 @@ class KorisnikModel extends CI_Model{
             'kategorija' => $kategorija,
             'zvanje' => $zvanje,
             'brTel' => $brTel,
+            'status' => $status,
             );
         
         $this->db->where('idKor', $id);
@@ -69,6 +71,25 @@ class KorisnikModel extends CI_Model{
                 return $korisnik;
         }
         return null;
+    }
+
+    public function getAll(){
+        $svi = $this->db->get('korisnik');
+        return $svi->result();
+    }
+
+
+    public function getById($id){
+        $this->db->select();
+        $this->db->from('korisnik');
+        $this->db->where('idKor', $id);
+        $upit = $this->db->get();
+
+        $res = $upit->result();
+        if($upit->num_rows() > 0)
+            return $res[0];
+        else
+            return null;
     }
 }
 ?>

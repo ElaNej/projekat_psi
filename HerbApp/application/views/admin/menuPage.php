@@ -1,3 +1,0 @@
-<p>
-    Dobro dosli!
-</p>

@@ -20,3 +20,5 @@
         </p>
         
         <?php echo form_close(); ?>
+
+        <a href="<?php echo site_url('login/registracija') ?>">Registruj se</a>
