@@ -32,7 +32,8 @@ class Proizvodnja extends CI_Controller{
          * 1.Reserved - sve potrebne sirovine su rezervisane, korisnik treba da potvrdi da je zahtev ispunjen
          * 2.Pending - ceka se da se rezervisu sve potrebne sirovine.
          * 3.Complete - KorisnikProizvodnja je potvrdio da je zahtev ispunjen(sve sirovine su rezervisane)
-         * 4.Incomplete - KorisnikProizvodnja je otkazao zahtev, nabavka je odbila zahtev ili nije na vreme odgovorila na zahteve
+         * 4.Rejected - KorisnikProizvodnja je otkazao zahtev Nabavka je odbila zahtev ili nije na vreme odgovorila na zahteve
+         * 5. Incomplete - KorisnikProizvodnja je otkazao zahtev, ili video da je nabavka nije odgovorila na vreme/odbila zahtev.
          */
         $zahtevProizvodId = $this->zahtevProizvodnjaModel->create($idProizvod, $datum, $num, 'reserved');
         

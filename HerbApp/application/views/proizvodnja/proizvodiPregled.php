@@ -1,4 +1,4 @@
-<p>
+
 <h2>Proizvodi</h2>
     <table>
         <th>Naziv</th>
@@ -22,4 +22,3 @@
         </tr>
       <?php } ?>
     </table>    
-</p>

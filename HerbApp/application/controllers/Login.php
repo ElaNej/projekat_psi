@@ -27,7 +27,7 @@ class Login extends CI_Controller{
         $lozinka = $this->input->post('password');
         
         $korisnik = $this->korisnikModel->getLoginKategorija($korIme,$lozinka);
-        if($korisnik == null){
+        if($korisnik == null){ //&& korisnik->status == 1
              $this->template->load('myTemplate', 'login', null);
         }
         else {

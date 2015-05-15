@@ -63,5 +63,15 @@ class SirovinaModel extends CI_Model{
         $this->db->where('idSirovine', $id);
         $this->db->update('sirovina', $new);
     }
+    
+    public function addToMagacin($id, $kol){
+        
+        $sirovina = $this->getById($id);
+        $magacinUk = $sirovina->magacinUk + $kol;
+        $new = array('magacinUk' => $magacinUk);
+        
+        $this->db->where('idSirovine', $id);
+        $this->db->update('sirovina', $new);
+    }
 }
 ?>

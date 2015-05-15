@@ -44,8 +44,7 @@ class ZahtevSirovinaModel extends CI_Model{
         $this->db->where('idZahtevSirov',$idZahtevSirov);
         $this->db->delete('zahtevsirovina');
     }
-    
-    
+     
     public function updateStatus($idZahtevProiz, $idZahtevSirov, $newStatus){
         
         $sirovinaZahtev = array('status' => $newStatus);
@@ -73,7 +72,8 @@ class ZahtevSirovinaModel extends CI_Model{
                //Azurira status zahteva proizvodnje ako su sve sirovine pribavljene
                $this->zahtevProizvodnjaModel->refreshStatus($zahtev->idZahtevProiz);
             }
-            //TODO Ako nema dovoljno, svejedno dopuni kolicinu, ali ne azurira status
+            //TODO Mogucnost: ako nema dovoljno, svejedno dopuni kolicinu, ali ne azurira status
+            //Mada je i ovako korektno, jer ne 'rasparcava' sirovine na vise zahteva koji nece biti zadovoljeni.
         }
     }
     
@@ -83,10 +83,11 @@ class ZahtevSirovinaModel extends CI_Model{
      * Pozivati funkciju kada se poveca stanje u magacinu neke sirovine.
      * Argument je id sirovina cije stanje se povecalo.
      */
+     //TODO: Testirati sve znacajne scenarije za ovu funkciju
     public function refreshAllZahtevi($idSirovine){
         
         //Approved zahtevi
-        //TODO DA LI DOBRO VRACA REDOSLED DATUMA?
+        //TODO: DA LI DOBRO VRACA REDOSLED DATUMA?
         $this->db->select();
         $this->db->from('zahtevsirovina');
         $this->db->where('status', 'approved');
@@ -109,6 +110,16 @@ class ZahtevSirovinaModel extends CI_Model{
         $resultPending = $upitResvPending->result();
         
         $this->refreshZahteviArray($resultPending);
+    }
+    
+    public function getAllPending(){
+        
+        $this->db->select();
+        $this->db->from('zahtevsirovina');
+        $this->db->where('status', 'pending');
+        $upit = $this->db->get();
+        
+        return $upit->result();
     }
     
 }

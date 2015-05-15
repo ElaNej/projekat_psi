@@ -37,6 +37,15 @@ class ZahtevProizvodnjaModel extends CI_Model{
         $this->db->delete('zahtevproizvodnja');
     }
     
+     //Ne pobrkati ovu funkciju sa refreshStatus!
+    public function updateStatus($idZahtev, $newStatus){
+        
+        $zahtev = array('status' => $newStatus);
+        
+        $this->db->where('idZahtev',$idZahtev);
+        $this->db->update('zahtevproizvodnja', $zahtev);
+    }
+    
     public function getById($id){
                 
         $this->db->select();
@@ -81,6 +90,16 @@ class ZahtevProizvodnjaModel extends CI_Model{
         }
     }
     
-    //public function addProizvod;
+    public function releaseReservedSirovine($idZahtev){
+        
+        $zahteviSirovine = $this->getAllZahtevSirovineForZahtevProizvod($idZahtev);
+        
+        foreach($zahteviSirovine as $zahtev){
+            //TODO: Magacin se dopunjava za kolicinu, i refreshuju se zahtevi za sirovine
+            $this->zahtevSirovinaModel->update($idZahtev, $zahtev->idZahtevSirov, $zahtev->datumKreiranja, $zahtev->datumComplete, 0, 0, 'rejected');
+            $this->sirovinaModel->addToMagacin($zahtev->idZahtevSirov, $zahtev->rezervisano);
+        }
+    }
+    
 }
 ?>
