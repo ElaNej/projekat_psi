@@ -73,5 +73,11 @@ class SirovinaModel extends CI_Model{
         $this->db->where('idSirovine', $id);
         $this->db->update('sirovina', $new);
     }
+	
+	public function getAll(){
+		$all = $this->db->get('sirovina');
+        return $all->result();
+	}
+	
 }
 ?>
