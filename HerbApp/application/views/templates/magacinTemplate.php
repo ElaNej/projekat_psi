@@ -1,7 +1,8 @@
 <html>
    
     <head>
-        <title>
+
+	   <title>
            HerbApp Magacin
         </title>
     </head>
@@ -9,7 +10,27 @@
     <body>
      
         <h2>Magacin Template</h2>
-         
+         	<h1>Dobro dosli!</h1>
+			<h2>magacin</h2>	
+<div style="padding-left:20%;">
+
+ <?php echo form_open('Magacin/KompletanPregledMagacin'); ?>
+            <td><input type="submit" value="Pregled kompletnog stanja"/></td>
+  <?php echo form_close(); ?>
+  
+  <?php echo form_open('Magacin/azurirajStanje'); ?>
+            <td><input type="submit" value="Azuriranje stanja u magacinu"/></td>
+  <?php echo form_close(); ?>
+ 
+  <?php echo form_open('Magacin/PregledArhive'); ?>
+            <td><input type="submit" value="Pregled arhive"/></td>
+  <?php echo form_close(); ?> 
+  
+  <?php echo form_open('Magacin/kreirajSirovinu'); ?>
+            <td><input type="submit" value="Nova sirovina"/></td>
+  <?php echo form_close(); ?>
+  
+</div>
         <div class="wrapper">
              
             <?php echo $body; ?>
