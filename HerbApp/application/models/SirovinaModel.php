@@ -75,7 +75,7 @@ class SirovinaModel extends CI_Model{
     }
 	
 	public function getAll(){
-		$all = $this->db->get('sirovina');
+	$all = $this->db->get('sirovina');
         return $all->result();
 	}
 	

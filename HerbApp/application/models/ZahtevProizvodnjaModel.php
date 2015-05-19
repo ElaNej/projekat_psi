@@ -101,5 +101,17 @@ class ZahtevProizvodnjaModel extends CI_Model{
         }
     }
     
+        public function getActiveRequests(){
+            
+        $this->db->select();
+        $this->db->from('zahtevproizvodnja');
+        $this->db->where('status', 'pending');
+        $this->db->or_where('status', 'rejected');
+        $this->db->or_where('status', 'reserved');
+        $upit = $this->db->get();
+        
+        return $upit->result();
+        }
+    
 }
 ?>

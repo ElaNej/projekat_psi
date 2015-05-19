@@ -1,6 +1,6 @@
 
 <h2>Proizvodi</h2>
-    <table>
+    <table class='etfTable'>
         <th>Naziv</th>
         <th>Neto kolicina</th>
         <th>Serijski broj</th>
@@ -16,7 +16,7 @@
             <td><?php echo $proizvod->kolicinaMagacin; ?></td>
             
             <?php echo form_open('Proizvodnja/napraviProizvod/'.$proizvod->idProizvoda); ?>
-            <td><input type="submit" value="Napravi"/></td>
+            <td><input type="submit" value="Napravi" class='etfDugme'/></td>
             <?php echo form_close(); ?>
             
         </tr>

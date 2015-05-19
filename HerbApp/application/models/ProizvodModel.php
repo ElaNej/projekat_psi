@@ -62,5 +62,6 @@ class ProizvodModel extends CI_Model{
         $upit = $this->db->get();
         return $upit->result();
     }
+    
 }
 ?>

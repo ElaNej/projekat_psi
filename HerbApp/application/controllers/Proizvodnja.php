@@ -65,5 +65,28 @@ class Proizvodnja extends CI_Controller{
         
         $this->listaProizvoda();
     }
+    
+    public function redZaProizvodnju(){
+        
+        $zahtevi = $this->zahtevProizvodnjaModel->getActiveRequests();
+        $data['zahtevi'] = $zahtevi;
+        
+        $proizvodi = array();
+        foreach($zahtevi as $zahtev){
+            $proizvod = $this->proizvodModel->getById($zahtev->idProizvod);
+            $proizvodi[$zahtev->idProizvod] = $proizvod;
+        }
+        $data['proizvodi'] = $proizvodi;
+        
+        $this->template->load('proizvodnjaTemplate', 'proizvodnja/redProizvodnja', $data);
+    }
+    
+    public function confirmActiveRequest($id){
+        
+    }
+    
+    public function rejectActiveRequest($id){
+        
+    }
 }
 ?>

@@ -114,6 +114,60 @@ class Admin extends CI_Controller{
 
         $this->korisnikModel->update($korisnik->idKor, $korisnik->korisnickoIme, $korisnik->ime, $korisnik->prezime, $korisnik->lozinka, $korisnik->email, $korisnik->kategorija, $korisnik->zvanje, $korisnik->brTel, 1);
 	}
+        
+        public function sirovinePregled(){
+            
+            $sirovine = $this->sirovinaModel->getAll();
+            $data['sirovine'] = $sirovine;
+            
+            $this->template->load('adminTemplate', 'admin/sirovinePregled', $data);
+        }
+        
+        public function showSirovina($id){
+            
+            $sirovina = $this->sirovinaModel->getById($id);
+            $data['sirovina'] = $sirovina;
+            
+            $this->template->load('adminTemplate', 'admin/sirovinaIzmena', $data);
+        }
+        
+        public function updateSirovina($id, $magacinRez){
+            
+            $naziv = $this->input->post('naziv');
+            $serBr = $this->input->post('serBr');
+            $vremePristiz = $this->input->post('vremePristiz');
+            $magacinUk = $this->input->post('magacinUk');
+            $jedinica = $this->input->post('jedinica');
+            
+            $this->sirovinaModel->update($id, $naziv, $serBr, $vremePristiz, $jedinica, $magacinUk, $magacinRez);
+            
+            $this->sirovinePregled();
+        }
+        
+        public function deleteSirovina($id){
+            
+            $this->sirovinaModel->delete($id);
+            
+            $this->sirovinePregled();
+        }
+        
+        public function newSirovina(){
+            
+            $this->template->load('adminTemplate', 'admin/novaSirovina');
+        }
+        
+        public function createSirovina(){
+            
+            $naziv = $this->input->post('naziv');
+            $serBr = $this->input->post('serBr');
+            $vremePristiz = $this->input->post('vremePristiz');
+            $magacinUk = $this->input->post('magacinUk');
+            $jedinica = $this->input->post('jedinica');
+            
+            $this->sirovinaModel->create($naziv, $serBr, $vremePristiz, $jedinica, $magacinUk, 0);
+            
+            $this->sirovinePregled();
+        }
 	
 }
 ?>
