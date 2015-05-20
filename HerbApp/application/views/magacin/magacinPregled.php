@@ -9,13 +9,13 @@
 		<input type="submit" value="pretraga" id="search">
 
 		<!--problematicna f.ja-->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript">
+		
+<script type="text/javascript">
     $(document).ready(function(){
     $("#search").click(function(e){
     e.preventDefault();
     var id = $('#ime').val();
-	var site_url = "<?php echo site_url('Magacin/pretraga/'); ?>" +id; //append id at end
+	var site_url = "<?php echo site_url();?>"+"Magacin/pretraga/"+id; //append id at end
     $("#odg").load(site_url);
     });
     });
@@ -36,7 +36,7 @@
 
 	<td>
 		<div id="odg">
-		ODGOVOR
+		
 		<!-- odgovor na pretragu  -->	
 		</div>
 

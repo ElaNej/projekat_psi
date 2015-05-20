@@ -18,6 +18,7 @@ class Magacin extends CI_Controller{
 		$sirovine=$this->sirovinaModel->getAll();
 		$data['sirovina']=$sirovine;
 		$data['pretraga']='';
+		$this->load->helper('url');
 		$this->template->load('magacinTemplate','magacin/magacinPregled',$data);
 		
 	}
@@ -30,6 +31,22 @@ class Magacin extends CI_Controller{
         $this->template->load('magacinTemplate', 'magacin/azurirajSirovinu', $data);
 	  }     
 	 }
+	 
+	 //azuriranje sirovine 
+	 //Ivanova f.ja
+	 public function updateSirovina($id, $magacinRez){
+            
+            $naziv = $this->input->post('naziv');
+            $serBr = $this->input->post('serBr');
+            $vremePristiz = $this->input->post('vremePristiz');
+            $magacinUk = $this->input->post('magacinUk');
+            $jedinica = $this->input->post('jedinica');
+            
+            $this->sirovinaModel->update($id, $naziv, $serBr, $vremePristiz, $jedinica, $magacinUk, $magacinRez);
+            
+            $this->listaMagacin();
+        }
+	 
 	
 	//arhiva-dodatna funkcionalnost
 	public function PregledArhive(){
@@ -38,22 +55,90 @@ class Magacin extends CI_Controller{
 		//todo
 	}
 	
-	//kreiranje sirovine
+	//kreiranje sirovine pregled
+	
 	public function kreirajSirovinu(){
-		
 	$this->template->load('magacinTemplate', 'magacin/kreirajSirovinu');
 	}
-	//azuriranje stanja u magacinu
-	public function azurirajStanje(){
-	$this->template->load('magacinTemplate','magacin/azuriranjeStanja');	
+	
+	////Ivanova f.ja za kreiranje sirovine
+	public function createSirovina(){
+			$naziv = $this->input->post('naziv');
+            $serBr = $this->input->post('serBr');
+            $vremePristiz = $this->input->post('vremePristiz');
+            $magacinUk = $this->input->post('magacinUk');
+            $jedinica = $this->input->post('jedinica');
+            
+            $this->sirovinaModel->create($naziv, $serBr, $vremePristiz, $jedinica, $magacinUk, 0);
+            
+            $this->listaMagacin();
+        }
+	
+	
+	//azuriranje stanja sirovine u magacinu - pregled
+	public function azurirajStanjeSirovina(){
+	$sirovine=$this->sirovinaModel->getAll();
+	$data['sirovina']=$sirovine;
+	$this->template->load('magacinTemplate','magacin/azuriranjeStanjaSirovine',$data);	
 		
 	}
 	
+	//azuriranje stanja proizvoda u magacinu - pregled
+	public function azurirajStanjeProizvoda(){
+	$proizvodi=$this->proizvodModel->getAll();	
+	$data['proizvod']=$proizvodi;
+	$this->template->load('magacinTemplate','magacin/azuriranjeStanjaProizvoda',$data);	
+		
+	}
+	
+	
+	//azuriranje stanja sirovine
+	public function updateStanjeSirovina($id){	
+		
+	
+	
+	}
+	
+	
+	
+	
+	//azuriranje stanja proizvoda
+	public function updateStanjeProizvoda(){
+		$id=$this->input->post('idPr');
+		$kol=$this->input->post('Kol');
+		$pr=$this->proizvodModel->getById($id);
+		$naziv=$pr->naziv;
+		$neto=$pr->neto;
+		$serBr=$pr->serBr;
+		$this->proizvodModel->update($id,$naziv,$neto,$serBr,$kol);
+		
+		
+		
+	}
+	
+	//vracanje stanja u magacinu AJAX skriptica
+	public function VratiStanjePr(){
+		       $id= $this->input->post('idPr');
+			   $pr=$this->proizvodModel->getById($id);
+			   $stanje=$pr->kolicinaMagacin;
+			   //$data['stanje']=$stanje;
+			   echo json_encode($stanje);
+	}
+	
+	
+	
 	//PROBLEM!!
-	public function pretraga($name){
+	public function pretraga(){
+		$name=$this->input->post('name');
 		$data['name']=$name;
 		//tbd proslednjivanje odgovarajuce sirovine itd.
-		echo $this->load->view('search_view',$data,true);
+		echo $this->load->view('searchResult',$data,true);
 	}
+	
+	
+	
+	
+	
+	
 
 }

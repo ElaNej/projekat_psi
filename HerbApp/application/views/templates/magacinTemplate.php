@@ -1,7 +1,7 @@
 <html>
    
     <head>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	   <title>
            HerbApp Magacin
         </title>
@@ -18,8 +18,12 @@
             <td><input type="submit" value="Pregled kompletnog stanja"/></td>
   <?php echo form_close(); ?>
   
-  <?php echo form_open('Magacin/azurirajStanje'); ?>
-            <td><input type="submit" value="Azuriranje stanja u magacinu"/></td>
+  <?php echo form_open('Magacin/azurirajStanjeSirovina'); ?>
+            <td><input type="submit" value="Azuriranje stanja sirovina u magacinu"/></td>
+  <?php echo form_close(); ?>
+  
+  <?php echo form_open('Magacin/azurirajStanjeProizvoda'); ?>
+            <td><input type="submit" value="Azuriranje stanja proizvoda u magacinu"/></td>
   <?php echo form_close(); ?>
  
   <?php echo form_open('Magacin/PregledArhive'); ?>
