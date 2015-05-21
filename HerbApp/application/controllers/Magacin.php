@@ -93,14 +93,33 @@ class Magacin extends CI_Controller{
 	
 	
 	//azuriranje stanja sirovine
-	public function updateStanjeSirovina($id){	
+	public function updateStanjeSirovina(){	
+		$id=$this->input->post('idSir');
+		$kol=$this->input->post('Kol');
+		$sir=$this->sirovinaModel->getById($id);
+		$naziv=$sir->naziv;
+		$serBr=$sir->serBr;
+		$vremePristiz=$sir->vremePristiz;
+		$jedinica=$sir->jedinica;
+		$magacinUk=$kol;
+		$magacinRez=$sir->magacinRez;
+		$this->sirovinaModel->update($id, $naziv, $serBr, $vremePristiz, $jedinica, $magacinUk, $magacinRez);
 		
-	
-	
 	}
 	
 	
 	
+	//vracanje stanja u magacinu AJAX skriptica
+	public function VratiStanjeSir(){
+		       $id= $this->input->post('idSir');
+			   $sir=$this->sirovinaModel->getById($id);
+			   $stanjeUk=$sir->magacinUk;
+			   $stanjeRez=$sir->magacinRez;
+			   $data['stanjeUk']=$stanjeUk;
+			   $data['stanjeRez']=$stanjeRez;
+			   echo json_encode($data);
+	}
+
 	
 	//azuriranje stanja proizvoda
 	public function updateStanjeProizvoda(){
@@ -111,7 +130,6 @@ class Magacin extends CI_Controller{
 		$neto=$pr->neto;
 		$serBr=$pr->serBr;
 		$this->proizvodModel->update($id,$naziv,$neto,$serBr,$kol);
-		
 		
 		
 	}
@@ -129,14 +147,19 @@ class Magacin extends CI_Controller{
 	
 	//PROBLEM!!
 	public function pretraga(){
-		$name=$this->input->post('name');
-		$data['name']=$name;
-		//tbd proslednjivanje odgovarajuce sirovine itd.
-		echo $this->load->view('searchResult',$data,true);
-	}
-	
-	
-	
+		
+	$ime=$this->input->post('ime');
+    $sirovine=$this->sirovinaModel->getAll();
+	foreach ($sirovine as $val) 
+	if ($val->naziv==$ime) break;
+	$data['id']=$val->idSirovine;
+	$data['ime']=$val->naziv;
+	$data['serBr']=$val->serBr;
+	$data['kol']=$val->magacinUk;
+
+    echo json_encode($data);
+		
+		}
 	
 	
 	

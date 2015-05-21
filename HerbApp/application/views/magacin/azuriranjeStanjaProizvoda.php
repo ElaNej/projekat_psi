@@ -110,10 +110,7 @@ function isInt(n) {
 					datatype:'json',
                     success : function(res){ //probably this request will return anything, it'll be put in var "data"
                        alert('Uspesno azurirani proizvodi!');
-					   
-					   //var result = $.parseJSON( res );
-					 // alert(result);
-
+					  
                     },
 					error: function() {alert("error!")},
                 });
