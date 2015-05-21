@@ -101,10 +101,14 @@ class Admin extends CI_Controller{
     }
 
     
-    public function search(){
+    public function search($str){
         
+        $korisnici = $this->korisnikModel->getByName($str);
         
+        echo json_encode($korisnici);
         
+        //$data['korisnici'] = $korisnici;
+        //$this->template->load('adminTemplate', 'admin/korisniciPregled', $data);
     }
     
 }

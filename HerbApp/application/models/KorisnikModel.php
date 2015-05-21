@@ -91,5 +91,25 @@ class KorisnikModel extends CI_Model{
         else
             return null;
     }
+    
+     public function getByName($str){
+        $svi = $this->db->get('korisnik');
+        
+        $korisnici = $svi->result();
+        
+        if ($str === "sviKorisniciPrintdfadsuhfiusdhfoais") return $korisnici;
+        
+        $rez = [];
+        
+        foreach($korisnici as $korisnik){
+            if (strpos($korisnik->ime,$str) === 0) {
+                array_push($rez, $korisnik);
+            }
+        }
+        
+        return $rez;
+    }
+  
+    
 }
 ?>
