@@ -11,6 +11,7 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url('assets/css/nav.css'); ?>" >
 
 
 	   <title>
@@ -20,38 +21,45 @@
     
  <body style="height:100%;">
  
+ 
  <div class="container-fluid">   
-<div class="navbar">
-  
-    <a class="navbar-brand" rel="home" href="<?php echo site_url('magacin/listaMagacin') ?>" title="pocetna">
-        <img style="max-width:100px; margin-top: -7px;"
+ 
+ 
+ 
+ <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+         <a class="navbar-brand" rel="home" href="<?php echo site_url('magacin/listaMagacin') ?>" title="pocetna">
+        <img style="max-width:120px; margin-top: -15px;"
              src="<?php echo base_url('assets/img/logo.png'); ?>">
     </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li ><a href="<?php echo site_url('Magacin/KompletanPregledMagacin'); ?>">Pregled kompletnog stanja magacina</a></li>
+            <li><a href="<?php echo site_url('Magacin/azurirajStanjeProizvoda'); ?>">Azuriranje stanja proizvoda u magacinu</a></li>
+            <li><a href="<?php echo site_url('Magacin/PregledArhive'); ?>">Arhiva-dodatna f.ja</a></li>
+			<li><a href="<?php echo site_url('Magacin/kreirajSirovinu'); ?>">Kreiranje nove sirovine</a>
+</li>
+            
+          </ul>
 
-	
-	
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+ 
+ 
 	
 
-<ul class="nav nav-tabs">
-		<li class="active">
-			<a href="<?php echo site_url('Magacin/KompletanPregledMagacin'); ?>">Pregled kompletnog stanja magacina</a>
-		</li>
-		<li class="active">
-			<a href="<?php echo site_url('Magacin/azurirajStanjeSirovina'); ?>">Azuriranje stanja sirovina u magacinu</a>
-		</li>
-		<li class="active">
-			<a href="<?php echo site_url('Magacin/azurirajStanjeProizvoda'); ?>">Azuriranje stanja proizvoda u magacinu</a>
-		</li>
-		<li class="active">
-			<a href="<?php echo site_url('Magacin/PregledArhive'); ?>">Arhiva-dodatna f.ja</a>
-		</li>
-		<li class="active">
-			<a href="<?php echo site_url('Magacin/kreirajSirovinu'); ?>">Kreiranje nove sirovine</a>
-		</li>
-		
-		
-</ul>
-</div>	
+
+
+
   <div class="row" style="padding-top:5%;">
 						<div class="col-md-2 column"></div>
 						<div class="col-md-8 column"> <?php echo $body; ?></div>
@@ -70,4 +78,7 @@
         <p class="text-muted">Tim RĐA © 2015</p>
       </div>
     </footer>
+	<script>
+
+</script>
 </html>
