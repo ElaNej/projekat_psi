@@ -102,7 +102,7 @@ class KorisnikModel extends CI_Model{
         $rez = [];
         
         foreach($korisnici as $korisnik){
-            if (strpos($korisnik->ime,$str) === 0) {
+            if (strpos(strtolower($korisnik->ime),strtolower($str)) === 0) {
                 array_push($rez, $korisnik);
             }
         }
