@@ -1,6 +1,10 @@
 <p>
 <h2>
-   Kreiranje novog korisnika.
+   <?php
+    if($registracija == 0) echo "Kreiranje novog korisnika";
+    else echo "Registracija novog korisnika";
+   ?>
+   
 </h2>
 
 
@@ -17,6 +21,7 @@
     //registracija = 1 ako se korinisk registruje
     if($registracija == 0) echo form_hidden('status', 1);
     else echo form_hidden('status', 0);
+    
 ?>
 
 <table>
@@ -73,8 +78,11 @@
 
     <tr>
         <?php
-        echo form_close(); //zatvara glavnu formu
-        echo form_open('Admin/korisnici/');  //otvara formu za odustani
+            echo form_close(); //zatvara glavnu formu
+            
+            if($registracija == 0)echo form_open('Admin/korisnici/');
+            else echo form_open('Login/index/');
+              
         ?>
         <td colspan="2" align="center"><input type="submit" name="odustani" value="Odustani"  />
             <?php echo form_close(); ?>

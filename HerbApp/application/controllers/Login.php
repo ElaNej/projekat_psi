@@ -27,7 +27,7 @@ class Login extends CI_Controller{
         $lozinka = $this->input->post('password');
         
         $korisnik = $this->korisnikModel->getLoginKategorija($korIme,$lozinka);
-        if($korisnik == null){ //&& korisnik->status == 1
+        if($korisnik == null){
              $this->template->load('myTemplate', 'login', null);
         }
         else {
@@ -56,8 +56,8 @@ class Login extends CI_Controller{
 
     function registracija(){
 
-        $data['registracija'] = 0;
-        $this->load->view('admin/kreirajKorisnikaPrikaz', $data);
+        $data['registracija'] = 1;
+        $this->template->load('myTemplate', 'admin/kreirajKorisnikaPrikaz', $data);
     }
 }
 ?>

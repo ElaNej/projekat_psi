@@ -9,7 +9,7 @@
     <input type="submit" value="Proizvodi"/>
     <?php echo form_close(); ?>
 
-    <?php echo form_open('Admin/sirovinePregled/'); ?>
+    <?php echo form_open('Admin/home/'); ?>
     <input type="submit" value="Sirovine"/>
     <?php echo form_close(); ?>
 
