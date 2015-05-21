@@ -1,4 +1,4 @@
-<html>
+<html style="height:100%">
    
     <head>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -18,7 +18,7 @@
         </title>
     </head>
     
-    <body >
+ <body style="height:100%;">
  
  <div class="container-fluid">   
 <div class="navbar">
@@ -58,10 +58,16 @@
 						<div class="col-md-2 column"></div>
 					</div>
 
-   
-             
+     
            
-             
        </div>
+	    
+	 
+             
     </body>
+	 <footer class="footer" style="position:absolute;bottom:0;width: 100%;height: 60px;background-color: #f5f5f5;">
+      <div class="container">
+        <p class="text-muted">Tim RĐA © 2015</p>
+      </div>
+    </footer>
 </html>
