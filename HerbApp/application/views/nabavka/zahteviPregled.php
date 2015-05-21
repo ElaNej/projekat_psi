@@ -2,7 +2,7 @@
 //TODO: Zavisno od odabrane opcije(Pending, Approved, Archived) se prikazuju razliciti zahtevi
 ?>
 <h2>Zahtevi</h2>
-    <table>
+    <table class="table">
         <th>Sirovina</th>
         <th>Kolicina</th>
         <th>Serijski broj</th>
@@ -27,11 +27,11 @@
 
             
             <?php echo form_open('Nabavka/potvrdiZahtev/'.$zahtev->idZahtevProiz.'/'.$zahtev->idZahtevSirov); ?>
-            <td><input type="submit" value="Potvrdi"/></td>
+            <td><input type="submit" value="Potvrdi" class="btn btn-success"/></td>
             <?php echo form_close(); ?>
             
             <?php echo form_open('Nabavka/odbijZahtev/'.$zahtev->idZahtevProiz.'/'.$zahtev->idZahtevSirov); ?>
-            <td><input type="submit" value="Odbaci"/></td>
+            <td><input type="submit" value="Odbaci" class="btn btn-danger"/></td>
             <?php echo form_close(); ?>
             
         </tr>
