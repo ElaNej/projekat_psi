@@ -24,7 +24,7 @@
     
 ?>
 
-<table>
+<table class="table">
     <tr>
         <td><label>Korisnicko ime:</label></td>
         <td><input type="text" name="korisnickoIme" value="" id="korisnickoIme"  /></td>
@@ -73,7 +73,7 @@
     </tr>
 
     <tr>
-        <td colspan="2" align="center"><input type="submit" name="submit" value="Potvrdi"  />
+        <td colspan="2" align="center"><input type="submit" name="submit" value="Potvrdi" class="btn btn-success" />
     </tr>
 
     <tr>
@@ -84,7 +84,7 @@
             else echo form_open('Login/index/');
               
         ?>
-        <td colspan="2" align="center"><input type="submit" name="odustani" value="Odustani"  />
+        <td colspan="2" align="center"><input type="submit" name="odustani" value="Odustani" class="btn btn-default" />
             <?php echo form_close(); ?>
     </tr>
 </table>

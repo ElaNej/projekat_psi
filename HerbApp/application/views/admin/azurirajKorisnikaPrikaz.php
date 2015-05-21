@@ -21,7 +21,7 @@
 
     ?>
 
-    <table>
+    <table class="table">
         <tr>
             <td><label>Korisnicko ime:</label></td>
             <td><input type="text" name="korisnickoIme" value="<?php echo $korisnik->korisnickoIme ?>" id="korisnickoIme"  /></td>
@@ -70,7 +70,7 @@
         </tr>
 
         <tr>
-            <td colspan="2" align="center"><input type="submit" name="submit" value="Potvrdi"  />
+            <td colspan="2" align="center"><input type="submit" name="submit" value="Potvrdi" class="btn btn-success" />
         </tr>
 
         <tr>
@@ -78,14 +78,19 @@
                 echo form_close(); //zatvara glavnu formu
                 echo form_open('Admin/korisnici/');  //otvara formu za odustani
             ?>
-            <td colspan="2" align="center"><input type="submit" name="odustani" value="Odustani"  />
+            <td colspan="2" align="center"><input type="submit" name="odustani" value="Odustani" class="btn btn-default"  /></td>
             <?php echo form_close(); ?>
         </tr>
+        
+        <tr>
+            <?php echo form_open('Admin/obrisiKorisnika/'.$korisnik->idKor); ?>
+            <td colspan="2" align="center"><input type="submit" value="Obrisi korisnika" class="btn btn-default"/></td>
+            <?php echo form_close(); ?>
+        </tr>
+        
     </table>
 
-    <?php echo form_open('Admin/obrisiKorisnika/'.$korisnik->idKor); ?>
-    <input type="submit" value="Obrisi korisnika"/>
-    <?php echo form_close(); ?>
+    
 
 
 </p>
