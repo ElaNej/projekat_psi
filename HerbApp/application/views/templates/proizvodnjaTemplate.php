@@ -55,7 +55,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-         <a class="navbar-brand" rel="home" href="<?php echo site_url('magacin/listaMagacin') ?>" title="pocetna">
+         <a class="navbar-brand" rel="home" href="<?php echo site_url('proizvodnja/listaProizvoda/') ?>" title="pocetna">
         <img style="max-width:120px; margin-top: -15px;"
              src="<?php echo base_url('assets/img/logo.png'); ?>">
     </a>
