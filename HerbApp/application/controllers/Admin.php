@@ -45,14 +45,22 @@ class Admin extends CI_Controller{
 
         $this->korisnikModel->create($korisnickoIme, $ime, $prezime, $lozinka, $email, $kategorija, $zvanje, $brTel, $status);
 
-        if($status == 1) echo 'Korisnik je uspenso kreiran';
-        else echo 'Registracija je uspesna. Administrator mora da odobri vasu registraciju';
+        if($status == 1) {
+            $data['content'] = 'Korisnik je uspesno kreiran';
+            $this->template->load('adminTemplate', 'admin/message', $data);
+        }
+        else{
+            $data['content'] = 'Registracija je uspesna. Administrator mora da odobri vasu registraciju';
+            $this->template->load('myTemplate', 'admin/message', $data);
+        }
     }
         
 	
     public function obrisiKorisnika($id){
         $this->korisnikModel->delete($id);
-        echo 'Korisnik id '.$id.' je uspesno obrisan';
+    
+        $data['content'] = 'Korisnik id '.$id.' je uspesno obrisan';
+        $this->template->load('adminTemplate', 'admin/message', $data);
     }
 
     
@@ -70,7 +78,10 @@ class Admin extends CI_Controller{
 
         $this->korisnikModel->update($id, $korisnickoIme, $ime, $prezime, $lozinka, $email, $kategorija, $zvanje, $brTel, $status);
         
-        echo $korisnickoIme.' je uspesno azuriran';
+        
+        $data['content'] = 'Korisnik '.$korisnickoIme.' je uspesno azuriran';
+        $this->template->load('adminTemplate', 'admin/message', $data);
+
     }
 
     public function azurirajKorisnikaPrikaz($id){
