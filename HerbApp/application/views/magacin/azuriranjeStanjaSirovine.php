@@ -1,5 +1,17 @@
-	   
-            <table align=center>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>	 
+
+
+	 
+            <table align=center class="table">
 			<!--listica proizvoda-->
 			<tr>
 				<td>
@@ -24,17 +36,15 @@
 
 			 <tr> 
 				<td>
-					Trenutno stanje slobodnih sirovina u magacinu:
+					Trenutno stanje slobodnih sirovina u magacinu: <br> (Negativna vrednost indikuje da je rezervisano vise sirovina nego sto ih ima u magacinu)
 				</td>
 				<td>
 					<input type="text" disabled="true" id="trVr">
 				</td>
 			 
-			 </tr>
-			  <tr> 
-				<td>
-				(Negativna vrednost indikuje da je rezervisano vise sirovina nego sto ih ima u magacinu)
-			 </td>
+			
+				
+			
 				
 			 </tr>
 		
@@ -43,8 +53,8 @@
 					Unesite azurirano stanje:
 				</td>
 				<td>
-				<input type="text" id="novaVr">
-				</input>
+				<input type="text" id="novaVr"/>
+				
 				</td>
 			</tr>
 			<tr>
@@ -59,7 +69,7 @@
 			</tr>
             <tr>
 			<td colspan=2 align=center>
-            <input type="button" value="Sacuvaj" onClick="azuriraj()"/>
+            <input type="button" value="Sacuvaj" onClick="azuriraj()"/  class="btn btn-success">
 			</tr>
 			
 			

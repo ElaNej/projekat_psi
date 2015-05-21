@@ -1,12 +1,21 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 <div style="float:width:45%;" align=center >
 <!-- pretraga  -->
-<table>
+<table class="table">
 <tr>
 	<td>
 		<input name="trazi" list="listaSir" id="ime">
-		<input type="button" value="pretraga" id="search" onClick='trazi()'>
+		<input type="button" value="pretraga" id="search" onClick='trazi()'  class="btn btn-default">
 
 		
 
@@ -38,15 +47,19 @@
 	<?php foreach ($sirovina as $val){ ?>
 
 		<tr>
-			<td><?php echo $val->naziv; ?></td>
+			<td><?php echo $val->naziv; ?><br>
+			serijski broj: <?php echo $val->serBr; ?><br>kolicina u magacinu: <?php echo $val->magacinUk; ?>
+			
+			</td>
+			<td>
 			<?php echo form_open('magacin/azurirajSirovinu/'.$val->idSirovine); ?>
-            <td><input type="submit" value="azuriraj"/></td>
+            <input type="submit" value="azuriraj" class="btn btn-default"/>
             <?php echo form_close(); ?>
-		</tr>
+		</td>
 
-		<tr>
-			<td>serijski broj: <?php echo $val->serBr; ?></td>
-			<td>kolicina u magacinu: <?php echo $val->magacinUk; ?></td>
+		
+			
+			
 		</tr>
 	<?php } ?>
 
@@ -69,7 +82,7 @@
                   // alert('Successful!');
 				   var obj = jQuery.parseJSON(res);
 				   var result=obj['id'];
-				    $("#odg").html('<tr><td>'+obj['ime']+'</td><td><input type="button" value="azuriraj" id="azuriraj"></td></tr><tr><td>serijski broj:'+obj['serBr']+'</td><td>kolicina u magacinu:'+obj['kol']+'</td></tr>');
+				    $("#odg").html('<tr><td>'+obj['ime']+'<br>serijski broj:'+obj['serBr']+'<br>kolicina u magacinu:'+obj['kol']+'</td><td><input type="button" class="btn btn-default" value="azuriraj" id="azuriraj"></td></tr>');
 					
 					
 				   
