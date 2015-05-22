@@ -70,21 +70,25 @@
         </tr>
 
         <tr>
-            <td colspan="2" align="center"><input type="submit" name="submit" value="Potvrdi" class="btn btn-success" />
-        </tr>
-
-        <tr>
-            <?php
-                echo form_close(); //zatvara glavnu formu
+            <td  align="center" colspan="2" >
+			
+			<button type="submit" name="submit" value="Potvrdi" class="btn btn-success " style="width:100px;" /> Potvrdi</button> <br/> 
+           <?php
+                echo form_close();  //zatvara glavnu formu ?> 
+			
+			<?php 
                 echo form_open('Admin/korisnici/');  //otvara formu za odustani
             ?>
-            <td colspan="2" align="center"><input type="submit" name="odustani" value="Odustani" class="btn btn-default"  /></td>
-            <?php echo form_close(); ?>
+            <button type="submit" name="odustani" value="Odustani" class="btn btn-default btn-sm " /> Odustani</button>
+			 <?php echo form_close(); ?>
+			
+			</td>
+			
         </tr>
         
         <tr>
             <?php echo form_open('Admin/obrisiKorisnika/'.$korisnik->idKor); ?>
-            <td colspan="2" align="center"><input type="submit" value="Obrisi korisnika" class="btn btn-default"/></td>
+            <td colspan="2" align="center"><input type="submit" value="Obrisi korisnika" class="btn btn-danger" style="width:150px;"/></td>
             <?php echo form_close(); ?>
         </tr>
         
