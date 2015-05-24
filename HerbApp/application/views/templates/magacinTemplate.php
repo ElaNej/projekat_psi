@@ -17,7 +17,63 @@
 	   <title>
            HerbApp Magacin
         </title>
+		<script>
+            
+            $("document").ready(function(){
+                $("#search").bind('input',function() {
+                     var dataString = $(this).serialize();
+                     var str = $('#search').val();
+                     if(str == "") str = "sveSirovine";
+                     $.ajax({
+                        type : 'post',
+                        url  : '<?php echo base_url()?>index.php/magacin/pretraga/'+str,
+                        data : dataString,
+                        dataType : 'json',
+                        success : function(res) {
+
+                            $("#searchDiv").empty();
+                            $("#searchDiv").append("<th>Naziv:</th><th>serijski broj:</th><th>Kolicina u magacinu:</th><th></th>");
+                            $.each(res, function(index, val) {
+                                var aStr = '<?php echo base_url()?>index.php/magacin/azurirajSirovinu/' + val.idSirovine;
+                                $("#searchDiv").append("<tr><td>" + val.naziv + "</td><td>" + val.serBr + "</td><td>" + val.magacinUk + "</td><td><a href=" + aStr + "><input type='submit' value='Azuriraj' class='btn btn-default'></td></a></tr>");
+                               
+                            });
+                         
+                         
+                        
+                         
+                        }
+                      });
+                });
+                
+                var str = $('#search').val();
+                if(str == "") str = "sveSirovine";
+                var dataString = $(this).serialize();
+                     $.ajax({
+                        type : 'post',
+                        url  : '<?php echo base_url()?>index.php/magacin/pretraga/'+str,
+                        data : dataString,
+                        dataType : 'json',
+                        success : function(res) {
+                            $("#searchDiv").empty();
+                            $("#searchDiv").append("<th>Naziv:</th><th>Serijski broj:</th><th>Kolicina u magacinu:</th><th></th>");
+                            $.each(res, function(index, val) {
+                                var aStr = '<?php echo base_url()?>index.php/magacin/azurirajSirovinu/' + val.idSirovine;
+                                $("#searchDiv").append("<tr><td>" + val.naziv + "</td><td>" + val.serBr + "</td><td>" + val.magacinUk + "</td><td><a href=" + aStr + "><input type='submit' value='Azuriraj' class='btn btn-default'></td></a></tr>");
+                               
+                            });
+                         
+                         
+                            
+                         
+                        }
+                      });
+                
+            });
+</script>
     </head>
+	
+	
     
  <body style="height:100%;">
  

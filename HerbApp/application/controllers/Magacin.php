@@ -144,20 +144,32 @@ class Magacin extends CI_Controller{
 	}
 	
 	
+	 
+	public function pretraga($str) {
 	
-	//PROBLEM!!
-	public function pretraga(){
-		
-	$ime=$this->input->post('ime');
+	$ime=$str;
+	$rez = [];
     $sirovine=$this->sirovinaModel->getAll();
-	foreach ($sirovine as $val) 
-	if ($val->naziv==$ime) break;
-	$data['id']=$val->idSirovine;
-	$data['ime']=$val->naziv;
-	$data['serBr']=$val->serBr;
-	$data['kol']=$val->magacinUk;
+	if ($str=="sveSirovine") $rez=$sirovine;
+	else 
+		foreach($sirovine as $sirovina){
+		 
+            if (strpos($sirovina->naziv,$str) === 0) {
+                array_push($rez, $sirovina);
+            }
+        }
+        
+    
+	
+	
+	//foreach ($sirovine as $val) 
+	//if ($val->naziv==$ime) break;
+	//$data['id']=$val->idSirovine;
+	//$data['ime']=$val->naziv;
+//	$data['serBr']=$val->serBr;
+//	$data['kol']=$val->magacinUk;
 
-    echo json_encode($data);
+    echo json_encode($rez);
 		
 		}
 	
