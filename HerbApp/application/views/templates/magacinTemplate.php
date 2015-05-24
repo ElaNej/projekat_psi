@@ -98,8 +98,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li ><a href="<?php echo site_url('Magacin/KompletanPregledMagacin'); ?>">Pregled kompletnog stanja magacina</a></li>
-            <li><a href="<?php echo site_url('Magacin/azurirajStanjeProizvoda'); ?>">Azuriranje stanja proizvoda u magacinu</a></li>
+            <li ><a href="<?php echo site_url('Magacin/KompletanPregledMagacin'); ?>">Pregled stanja magacina</a></li>
+            <li><a href="<?php echo site_url('Magacin/azurirajStanjeProizvoda'); ?>">Azuriranje stanja proizvoda</a></li>
+			<li><a href="<?php echo site_url('Magacin/azurirajStanjeSirovina'); ?>">Azuriranje stanja sirovina</a></li>
+
             <li><a href="<?php echo site_url('Magacin/PregledArhive'); ?>">Arhiva-dodatna f.ja</a></li>
 			<li><a href="<?php echo site_url('Magacin/kreirajSirovinu'); ?>">Kreiranje nove sirovine</a>
 </li>
