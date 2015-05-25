@@ -78,6 +78,7 @@
 
 
 <script>
+var stanjeUkupno=0;
 function isInt(n) {
    return n % 1 === 0;
 }
@@ -94,8 +95,10 @@ function isInt(n) {
 					datatype:'json',
                     success : function(res){ //probably this request will return anything, it'll be put in var "res"
                       // alert('Successful!');
+
 					   var obj = jQuery.parseJSON(res);
-					   var container = $('#trVr'); //jquery selector (get element by id)
+					   stanjeUkupno=parseInt(obj['stanjeUk']);
+						var container = $('#trVr'); //jquery selector (get element by id)
 					   var result=parseInt(obj['stanjeUk'])-parseInt(obj['stanjeRez']);
 					   //alert(result);
                        container.val(result);
@@ -112,11 +115,10 @@ function isInt(n) {
 		var stanje=document.getElementById("trVr").value;
 		if (inp1!='' && inp2!='' ) alert("Greska! Nije dozvoljeno popunjavanje oba polja!");
      	else if (inp1<0 || isNaN(inp1) || !isInt(inp1)) alert("Greska! Nedozvoljeno stanje magacina!");
-			 else if ((parseInt(stanje)+parseInt(inp2))<0) alert("Greska! Nema dovoljno sirovina u magacinu!");
 			//sve je okej sto se tice unosa, ajax poziv!
 			else { 
 				 if (inp1!='') var kolicina=inp1;
-				 else var kolicina=parseInt(stanje)+parseInt(inp2);
+				 else var kolicina=stanjeUkupno+parseInt(inp2);
 				
 				 var base_url = '<?php echo site_url();?>';
 					$.ajax({
