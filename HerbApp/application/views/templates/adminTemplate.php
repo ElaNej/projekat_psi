@@ -33,9 +33,10 @@
                             $("#searchDiv").empty();
                             $("#searchDiv").append("<th>Ime</th><th>Prezime</th><th>Kategorija</th><th></th>");
                             $.each(res, function(index, val) {
-                                var aStr = '<?php echo base_url()?>index.php/Admin/azurirajKorisnikaPrikaz/' + val.idKor;
-                                $("#searchDiv").append("<tr><td>" + val.ime + "</td><td>" + val.prezime + "</td><td>" + val.kategorija + "</td><td><a href=" + aStr + "><input type='submit' value='Azuriraj' class='btn btn-default'></td></a></tr>");
-                               
+                                if(val.status == 1){
+                                    var aStr = '<?php echo base_url()?>index.php/Admin/azurirajKorisnikaPrikaz/' + val.idKor;
+                                    $("#searchDiv").append("<tr><td>" + val.ime + "</td><td>" + val.prezime + "</td><td>" + val.kategorija + "</td><td><a href=" + aStr + "><input type='submit' value='Azuriraj' class='btn btn-default'></td></a></tr>");
+                                }
                             });
                          
                          
@@ -58,9 +59,10 @@
                             $("#searchDiv").empty();
                             $("#searchDiv").append("<th>Ime</th><th>Prezime</th><th>Kategorija</th><th></th>");
                             $.each(res, function(index, val) {
-                                var aStr = '<?php echo base_url()?>index.php/Admin/azurirajKorisnikaPrikaz/' + val.idKor;
-                                $("#searchDiv").append("<tr><td>" + val.ime + "</td><td>" + val.prezime + "</td><td>" + val.kategorija + "</td><td><a href=" + aStr + "><input type='submit' value='Azuriraj' class='btn btn-default'></td></a></tr>");
-                               
+                                if(val.status == 1){
+                                    var aStr = '<?php echo base_url()?>index.php/Admin/azurirajKorisnikaPrikaz/' + val.idKor;
+                                    $("#searchDiv").append("<tr><td>" + val.ime + "</td><td>" + val.prezime + "</td><td>" + val.kategorija + "</td><td><a href=" + aStr + "><input type='submit' value='Azuriraj' class='btn btn-default'></td></a></tr>");
+                                }
                             });
                          
                          

@@ -98,6 +98,10 @@ class Admin extends CI_Controller{
     public function prihvatiKorisnika($id){
         $korisnik = $this->korisnikModel->getById($id);
         $this->korisnikModel->update($korisnik->idKor, $korisnik->korisnickoIme, $korisnik->ime, $korisnik->prezime, $korisnik->lozinka, $korisnik->email, $korisnik->kategorija, $korisnik->zvanje, $korisnik->brTel, 1);
+
+        $data['content'] = 'Korisnik je dodat u bazu';
+        $this->template->load('adminTemplate', 'admin/message', $data);
+        
     }
 
     

@@ -72,17 +72,20 @@
         <tr>
             <td  align="center" colspan="2" >
 			
-			<button type="submit" name="submit" value="Potvrdi" class="btn btn-success " style="width:100px;" /> Potvrdi</button> <br/> 
-           <?php
-                echo form_close();  //zatvara glavnu formu ?> 
+                <button type="submit" name="submit" value="Potvrdi" class="btn btn-success " style="width:100px;" /> Potvrdi</button> <br/> 
+                <?php    
+                    echo form_close();  //zatvara glavnu formu
+                ?> 
+
+                <?php 
+                    echo form_open('Admin/korisnici/');  //otvara formu za odustani
+                ?>
+
+                <button type="submit" name="odustani" value="Odustani" class="btn btn-default btn-sm " style="margin-top: 5px"/> Odustani</button>
+                
+                <?php echo form_close(); ?>
 			
-			<?php 
-                echo form_open('Admin/korisnici/');  //otvara formu za odustani
-            ?>
-            <button type="submit" name="odustani" value="Odustani" class="btn btn-default btn-sm " /> Odustani</button>
-			 <?php echo form_close(); ?>
-			
-			</td>
+            </td>
 			
         </tr>
         
