@@ -15,11 +15,21 @@
             <td><?php echo $proizvodi[$zahtev->idProizvod]->naziv; ?></td>
             <td><?php echo $zahtev->datum; ?></td>
             <td><?php echo $zahtev->kolicina; ?></td>
-            <td><?php echo $zahtev->status; ?></td>
+            <td><?php echo $zahtev->status; ?></td>     
             
-            <?php echo form_open('Proizvodnja/confirmActiveRequest/'.$zahtev->idZahtev); ?>
-            <td><input type="submit" value="Potvrdi" class="btn btn-success" /></td>				<!-- stari css: .etfDugme -->
-            <?php echo form_close(); ?>
+            <td>
+            <?php if(strcmp($zahtev->status, 'pending') != 0){
+                
+                echo form_open('Proizvodnja/confirmActiveRequest/'.$zahtev->idZahtev);
+                $attributes = array(
+                  'class' => "btn btn-success",    //isto promenjeno ime dugmeta
+                    'value' => 'Potvrdi'
+                );
+                echo form_submit($attributes);
+                echo form_close();
+            }
+                ?>
+            </td>
             
             <td>
             <?php if(strcmp($zahtev->status, 'rejected') != 0){

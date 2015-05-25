@@ -56,7 +56,7 @@ class ZahtevSirovinaModel extends CI_Model{
     
     //Azurira status za prosledjeni niz zahteva
     //Poziva se iz funkcije refreshAllStatus
-    //Ne pozivati ovu f-ju za update statusa, vec refreshAllStatus
+    //Ne pozivati ovu f-ju za update statusa, vec refreshAllZahtevi
     public function refreshZahteviArray($result){
         
         foreach($result as $zahtev){

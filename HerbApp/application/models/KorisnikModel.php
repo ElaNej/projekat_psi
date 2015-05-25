@@ -99,7 +99,7 @@ class KorisnikModel extends CI_Model{
         
         if ($str === "sviKorisniciPrintdfadsuhfiusdhfoais") return $korisnici;
         
-        $rez = [];
+        $rez = array();
         
         foreach($korisnici as $korisnik){
             if (strpos(strtolower($korisnik->ime),strtolower($str)) === 0) {

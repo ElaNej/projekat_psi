@@ -81,12 +81,31 @@ class Proizvodnja extends CI_Controller{
         $this->template->load('proizvodnjaTemplate', 'proizvodnja/redProizvodnja', $data);
     }
     
-    public function confirmActiveRequest($id){
+    //Evidencija da je proizvodnja videla zahteve koji su potvrdjeni/odbijeni u potpunosti
+    public function confirmActiveRequest($idZahtev){
         
+        $zahtev = $this->zahtevProizvodnjaModel->getbyId($idZahtev);
+        if(strcmp($zahtev->status, 'reserved') == 0){
+            
+            $this->zahtevProizvodnjaModel->confirmReservedProizvod($idZahtev);
+            $this->zahtevProizvodnjaModel->updateStatus($idZahtev, 'complete');
+        }
+        else if(strcmp($zahtev->status, 'rejected') == 0){
+            
+            $this->zahtevProizvodnjaModel->releaseReservedSirovine($idZahtev);
+            $this->proizvodnjaModel->updateStatus($idZahtev, 'incomplete');
+        }
+        
+        $this->redZaProizvodnju();
     }
     
-    public function rejectActiveRequest($id){
+    //Proizvodnja moze da odbije potvrdjene zahteve ili zahteve na cekanju
+    public function rejectActiveRequest($idZahtev){
         
+        $this->zahtevProizvodnjaModel->releaseReservedSirovine($idZahtev);
+        $this->proizvodnjaModel->updateStatus($idZahtev, 'incomplete');
+        
+        $this->redZaProizvodnju();
     }
 }
 ?>

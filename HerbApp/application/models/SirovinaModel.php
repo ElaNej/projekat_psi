@@ -64,6 +64,11 @@ class SirovinaModel extends CI_Model{
         $this->db->update('sirovina', $new);
     }
     
+    public function removeFromRezervisano($id, $kol){
+        
+        $this->addToRezervisano($id, -$kol);
+    }
+    
     public function addToMagacin($id, $kol){
         
         $sirovina = $this->getById($id);
@@ -72,6 +77,11 @@ class SirovinaModel extends CI_Model{
         
         $this->db->where('idSirovine', $id);
         $this->db->update('sirovina', $new);
+    }
+    
+    public function removeFromMagacin($id, $kol){
+        
+        $this->addToMagacin($id, -$kol);
     }
 	
 	public function getAll(){

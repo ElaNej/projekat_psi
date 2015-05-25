@@ -125,7 +125,7 @@
           <ul class="nav navbar-nav">
             <li ><a href="<?php echo site_url('Admin/korisnici'); ?>">Zaposleni</a></li>
             <li><a href="<?php echo site_url('Admin/home'); ?>">Proizvodi</a></li>
-            <li><a href="<?php echo site_url('Admin/home'); ?>">Sirovine</a></li>
+            <li><a href="<?php echo site_url('Admin/sirovinePregled'); ?>">Sirovine</a></li>
             <li><a href="<?php echo site_url('Admin/home'); ?>">Nabavka</a></li>
             
           </ul>

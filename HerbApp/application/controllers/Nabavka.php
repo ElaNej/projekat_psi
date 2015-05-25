@@ -24,10 +24,8 @@ class Nabavka extends CI_Controller{
     
     public function odbijZahtev($idZahtevProiz, $idZahtevSirov){
         
-        //$this->zahtevSirovinaModel->updateStatus($idZahtevProiz, $idZahtevSirov, 'incomplete');
         $this->zahtevProizvodnjaModel->updateStatus($idZahtevProiz, 'rejected');
         $this->zahtevProizvodnjaModel->releaseReservedSirovine($idZahtevProiz);
-        //TODO: Poziv f-je koja oslobadja rezervisane sirovine proizvoda, jer nece moci da se
     }
 }
 ?>

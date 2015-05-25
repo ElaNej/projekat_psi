@@ -90,14 +90,30 @@ class ZahtevProizvodnjaModel extends CI_Model{
         }
     }
     
+    //Oslobadjaju se do sada rezervisane sirovine i dodeljuju drugim proizvodima koji cekaju na te sirovine
     public function releaseReservedSirovine($idZahtev){
         
         $zahteviSirovine = $this->getAllZahtevSirovineForZahtevProizvod($idZahtev);
         
         foreach($zahteviSirovine as $zahtev){
-            //TODO: Magacin se dopunjava za kolicinu, i refreshuju se zahtevi za sirovine
+            
             $this->zahtevSirovinaModel->update($idZahtev, $zahtev->idZahtevSirov, $zahtev->datumKreiranja, $zahtev->datumComplete, 0, 0, 'rejected');
-            $this->sirovinaModel->addToMagacin($zahtev->idZahtevSirov, $zahtev->rezervisano);
+            $this->sirovinaModel->removeFromRezervisano($zahtev->idZahtevSirov, $zahtev->rezervisano);
+            $this->zahtevSirovinaModel->refreshAllZahtevi($zahtev->idZahtevSirov);
+        }
+    }
+    
+    //Prilikom potvrde o pravljenju proizvoda za koji su rezervisane sve sirovine, sirovine se oduzimaju iz magacina
+    public function confirmReservedProizvod($idZahtev){
+        
+        $zahteviSirovine = $this->getAllZahtevSirovineForZahtevProizvod($idZahtev);
+        
+        foreach($zahtevSirovine as $zahtev){
+            
+            $sirovina = $this->sirovinaModel->getById($zahtev->idZahtevSirov);
+            //Sirovine se oduzimaju i od ukupnog stanja u magacinu i od broja rezervisanih
+            $sirovina->removeFromMagacin($sirovina->idSirovine, $zahtev->kolicina);
+            $sirovina->removeFromRezervisano($sirovina->idSirovine, $zahtev->kolicina);
         }
     }
     

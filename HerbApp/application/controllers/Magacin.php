@@ -90,8 +90,7 @@ class Magacin extends CI_Controller{
 	$this->template->load('magacinTemplate','magacin/azuriranjeStanjaProizvoda',$data);	
 		
 	}
-	
-	
+		
 	//azuriranje stanja sirovine
 	public function updateStanjeSirovina(){	
 		$id=$this->input->post('idSir');
@@ -103,8 +102,7 @@ class Magacin extends CI_Controller{
 		$jedinica=$sir->jedinica;
 		$magacinUk=$kol;
 		$magacinRez=$sir->magacinRez;
-		$this->sirovinaModel->update($id, $naziv, $serBr, $vremePristiz, $jedinica, $magacinUk, $magacinRez);
-		
+		$this->sirovinaModel->update($id, $naziv, $serBr, $vremePristiz, $jedinica, $magacinUk, $magacinRez);		
 	}
 	
 	
@@ -148,7 +146,7 @@ class Magacin extends CI_Controller{
 	public function pretraga($str) {
 	
 	$ime=$str;
-	$rez = [];
+	$rez = array();
     $sirovine=$this->sirovinaModel->getAll();
 	if ($str=="sveSirovine") $rez=$sirovine;
 	else 
