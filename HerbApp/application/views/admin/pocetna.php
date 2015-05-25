@@ -18,7 +18,7 @@
     <?php echo form_close(); ?>
 	</div>
 	<div class="btn-group" role="group">
-    <?php echo form_open('Admin/home/'); ?>
+    <?php echo form_open('Admin/sirovinePregled/'); ?>
     <button type="submit" value="Sirovine" class="btn btn-default"/>Sirovine</button>
     <?php echo form_close(); ?>
 	</div>
