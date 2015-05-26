@@ -2,7 +2,7 @@
 <h2>Korisnici</h2>
 
 
-<input id="search" name="search" size="50" placeholder="Search"/><br><br>
+<input id="search" name="search" size="50" placeholder="Pretraga.."/><br><br>
 <table id="searchDiv" class="table"></table>
 
 

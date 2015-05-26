@@ -186,10 +186,15 @@ class Admin extends CI_Controller{
             
         }
         
+		
+		
         public function createProizvod(){
             $naziv = $_POST['naziv'];
             $serBr = $_POST['serBr'];
             
+			
+			
+			
             $this->proizvodModel->create($naziv, 0, $serBr, 0);
             $this->prozivodiPregled();
         }
@@ -215,6 +220,24 @@ class Admin extends CI_Controller{
             
             $this->prozivodiPregled();
         }
+		
+		
+		
+		//pretraga za novi pr.
+		
+		public function searchPr($str){
+        
+        $sirovine = $this->sirovinaModel->getByName($str);
+        
+        echo json_encode($sirovine);
+        
+    }
+		
+			
+	
+		
+		
+		
         
 }
 ?>
