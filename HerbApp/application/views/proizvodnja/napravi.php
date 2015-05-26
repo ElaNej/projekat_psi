@@ -3,6 +3,12 @@
  <div class="col-lg-3">
 
 <div class="form-group" align=center>
+    
+    <p>
+        <?php
+        if(isset($error)) echo $error;
+        ?>
+    </p>
 
 <p>
      Naziv proizvoda: <?php echo $proizvod->naziv ?>

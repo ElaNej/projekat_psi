@@ -23,10 +23,28 @@ class Proizvodnja extends CI_Controller{
     public function rezervisiSirovine($idProizvod){
         //$this->zahtevSirovinaModel->create($id, $row->idSirovina, date('Y/m/d'), date('Y/m/d'), $kolicina, 'complete');
         $proizvodSadrzi = $this->proizvodModel->getProizvodSadrzi($idProizvod);
+        $proizvod  = $this->proizvodModel->getById($idProizvod);
         $num = $this->input->post('kolicina');
+        
+        if($num < 0 || !(is_numeric($num))){
+            
+            $error = 'Uneta nedozvoljena vrednost za kolicinu';
+            $data['error'] = $error;
+            $data['proizvod'] =  $proizvod;
+            $this->template->load('proizvodnjaTemplate', 'proizvodnja/napravi', $data);
+            return;
+        }
         
         $time = strtotime($this->input->post('datum'));
         $datum = date('Y/m/d', $time);
+        
+        if(strtotime($datum) < strtotime(date('Y/m/d'))){
+            $error = 'Ne moze se uneti datum iz proslosti';
+            $data['error'] = $error;
+            $data['proizvod'] =  $proizvod;
+            $this->template->load('proizvodnjaTemplate', 'proizvodnja/napravi', $data);
+            return;
+        }
         /*
          * Statusi za zahtev za PROIZVOD su
          * 1.Reserved - sve potrebne sirovine su rezervisane, korisnik treba da potvrdi da je zahtev ispunjen

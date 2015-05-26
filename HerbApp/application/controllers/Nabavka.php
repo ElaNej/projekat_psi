@@ -27,6 +27,8 @@ class Nabavka extends CI_Controller{
         
         $this->zahtevProizvodnjaModel->updateStatus($idZahtevProiz, 'rejected');
         $this->zahtevProizvodnjaModel->releaseReservedSirovine($idZahtevProiz);
+        
+        $this->listaZahtevi();
     }
     
     public function showArhiva(){
@@ -73,6 +75,16 @@ class Nabavka extends CI_Controller{
     
     public function createZahtev($id){
         $kolicina = $this->input->post('kolicina');
+        
+        if($kolicina < 0 || !(is_numeric($kolicina))){
+            
+            $error = 'Uneta nedozvoljena vrednost za kolicinu';
+            $data['error'] = $error;
+            $sirovina = $this->sirovinaModel->getById($id);
+            $data['sirovina'] =  $sirovina;            
+            $this->template->load('nabavkaTemplate', 'nabavka/novZahtev', $data);
+            return;
+        }
         
         $sirovina = $this->sirovinaModel->getById($id);
         $slobodno = $sirovina->magacinUk - $sirovina->magacinRez;

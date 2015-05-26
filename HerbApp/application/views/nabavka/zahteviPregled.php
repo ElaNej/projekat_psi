@@ -1,5 +1,6 @@
+
 <?php 
-//TODO: Zavisno od odabrane opcije(Pending, Approved, Archived) se prikazuju razliciti zahtevi
+if(!empty($zahtevi)){
 ?>
 <h2>Zahtevi</h2>
     <table class="table">
@@ -36,5 +37,9 @@
             
         </tr>
       <?php } ?>
-    </table>    
+    </table>
+
+<?php } 
+else {echo 'Nema novih zahteva';}
+?>
 
