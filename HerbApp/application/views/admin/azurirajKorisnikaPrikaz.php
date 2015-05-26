@@ -35,7 +35,7 @@
         <tr>
             <td><label>Kategorija:</label></td>
             <td>
-                <select name="kategorija" size="4">
+                <select name="kategorija" size="4" style="width: 199px">
                     <option value="zapProizvodnja" <?php if ($korisnik->kategorija === 'zapProizvodnja' ) echo 'selected'; ?> >proizvodnja</option>
                     <option value="zapNabavka" <?php if ($korisnik->kategorija === 'zapNabavka' ) echo 'selected'; ?> >nabavka</option>
                     <option value="zapMagacin" <?php if ($korisnik->kategorija === 'zapMagacin' ) echo 'selected'; ?> >magacin</option>
