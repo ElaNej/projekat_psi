@@ -169,5 +169,52 @@ class Admin extends CI_Controller{
             $this->sirovinePregled();
         }
     
+        
+        public function prozivodiPregled(){
+            $proizvodi = $this->proizvodModel->getAll();
+            $data['proizvodi'] = $proizvodi;
+            
+            $this->template->load('adminTemplate', 'admin/prozivodiPregled', $data);
+            
+        }
+        
+        
+        public function newProizvod(){
+            $sirovine = $this->sirovinaModel->getAll();
+            $data['sirovine'] = $sirovine;
+            $this->template->load('adminTemplate', 'admin/noviProizvod', $data);
+            
+        }
+        
+        public function createProizvod(){
+            $naziv = $_POST['naziv'];
+            $serBr = $_POST['serBr'];
+            
+            $this->proizvodModel->create($naziv, 0, $serBr, 0);
+            $this->prozivodiPregled();
+        }
+        
+        public function showProizvod($id){
+            
+            $proizvod = $this->proizvodModel->getById($id);
+            $data['proizvod'] = $proizvod;
+            
+            $this->template->load('adminTemplate', 'admin/proizvodIzmena', $data);
+            
+        }
+        public function updateProizvod($id){
+            $naziv = $_POST['naziv'];
+            $serBr = $_POST['serBr'];
+            
+            $this->proizvodModel->update($id, $naziv, 0, $serBr, 0);
+            $this->prozivodiPregled();
+        }
+      
+        public function deleteProizvod($id){
+            $this->proizvodModel->delete($id);
+            
+            $this->prozivodiPregled();
+        }
+        
 }
 ?>

@@ -20,6 +20,14 @@
             
             $("document").ready(function(){
 
+
+                $('option').mousedown(function(e) {
+                    e.preventDefault();
+                    $(this).prop('selected', !$(this).prop('selected'));
+                    return false;
+                });
+
+
                 $("#search").bind('input',function() {
                      var dataString = $(this).serialize();
                      var str = $('#search').val();
@@ -126,7 +134,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li ><a href="<?php echo site_url('Admin/korisnici'); ?>">Zaposleni</a></li>
-            <li><a href="<?php echo site_url('Admin/home'); ?>">Proizvodi</a></li>
+            <li><a href="<?php echo site_url('Admin/prozivodiPregled'); ?>">Proizvodi</a></li>
             <li><a href="<?php echo site_url('Admin/sirovinePregled'); ?>">Sirovine</a></li>
             <li><a href="<?php echo site_url('Admin/home'); ?>">Nabavka</a></li>
             <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
