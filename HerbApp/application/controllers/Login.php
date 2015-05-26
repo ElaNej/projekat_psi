@@ -49,7 +49,7 @@ class Login extends CI_Controller{
           else if(strcmp($korisnik->kategorija, 'admin') == 0){
                 session_start();
                 $_SESSION['korisnikId'] = $korisnik->idKor;
-                redirect('admin/home');
+                redirect('admin/korisniciPregled');
                     }
              }
     }
