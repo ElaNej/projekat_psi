@@ -55,8 +55,8 @@ class ZahtevSirovinaModel extends CI_Model{
     }
     
     //Azurira status za prosledjeni niz zahteva
-    //Poziva se iz funkcije refreshAllStatus
-    //Ne pozivati ovu f-ju za update statusa, vec refreshAllZahtevi
+    //Poziva se iz funkcije refreshAllZahtevi
+    //Ne pozivati ovu f-ju za update statusa, vec updateStatus
     public function refreshZahteviArray($result){
         
         foreach($result as $zahtev){
@@ -89,10 +89,11 @@ class ZahtevSirovinaModel extends CI_Model{
         //Approved zahtevi
         //TODO: DA LI DOBRO VRACA REDOSLED DATUMA?
         $this->db->select();
+        //$this->db->select('str_to_date('.'datumComplete'.', "%d-%b-%Y") day',false);//select your colum as new column name wich is converted as str ot date
         $this->db->from('zahtevsirovina');
         $this->db->where('status', 'approved');
         $this->db->where('idZahtevSirov', $idSirovine);
-        $this->db->order_by('datumComplete', 'desc');
+        $this->db->order_by('datumComplete', 'asc');//?
         $upitResvApproved = $this->db->get();
         
         $resultApproved = $upitResvApproved->result();
@@ -104,7 +105,7 @@ class ZahtevSirovinaModel extends CI_Model{
         $this->db->from('zahtevsirovina');
         $this->db->where('status', 'pending');
         $this->db->where('idZahtevSirov', $idSirovine);
-        $this->db->order_by('datumComplete', 'desc');
+        $this->db->order_by('datumComplete', 'asc');//?
         $upitResvPending = $this->db->get();
         
         $resultPending = $upitResvPending->result();
@@ -117,6 +118,17 @@ class ZahtevSirovinaModel extends CI_Model{
         $this->db->select();
         $this->db->from('zahtevsirovina');
         $this->db->where('status', 'pending');
+        $upit = $this->db->get();
+        
+        return $upit->result();
+    }
+    
+    public function getAllArchived(){
+        
+        $this->db->select();
+        $this->db->from('zahtevsirovina');
+        $this->db->where('status', 'reserved');
+        $this->db->or_where('status', 'rejected');
         $upit = $this->db->get();
         
         return $upit->result();

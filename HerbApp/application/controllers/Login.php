@@ -59,5 +59,11 @@ class Login extends CI_Controller{
         $data['registracija'] = 1;
         $this->template->load('myTemplate', 'admin/kreirajKorisnikaPrikaz', $data);
     }
+    
+    function logout(){
+        session_start();
+        session_destroy();
+        $this->template->load('myTemplate', 'login', null);
+    }
 }
 ?>

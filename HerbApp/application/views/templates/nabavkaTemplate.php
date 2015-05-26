@@ -43,6 +43,19 @@
              src="<?php echo base_url('assets/img/logo.png'); ?>">
     </a>
         </div>
+          
+          <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              
+            <li> <a href="<?php echo site_url('nabavka/listaZahtevi/') ?>">Zahtevi</a></li>
+            <li> <a href="<?php echo site_url('nabavka/showArhiva/') ?>">Arhiva</a></li>
+            <li> <a href="<?php echo site_url('nabavka/kompletanPregledMagacin/') ?>">Magacin</a></li>
+            <li> <a href="<?php echo site_url('nabavka/showSirovine/') ?>">Sirovine</a></li>
+            <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
+            
+          </ul>
+
+        </div><!--/.nav-collapse -->
       
       </div>
     </nav>

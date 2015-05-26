@@ -97,12 +97,18 @@ class Magacin extends CI_Controller{
 		$kol=$this->input->post('Kol');
 		$sir=$this->sirovinaModel->getById($id);
 		$naziv=$sir->naziv;
+                $staraKol = $sir->magacinUk;
 		$serBr=$sir->serBr;
 		$vremePristiz=$sir->vremePristiz;
 		$jedinica=$sir->jedinica;
 		$magacinUk=$kol;
 		$magacinRez=$sir->magacinRez;
-		$this->sirovinaModel->update($id, $naziv, $serBr, $vremePristiz, $jedinica, $magacinUk, $magacinRez);		
+		$this->sirovinaModel->update($id, $naziv, $serBr, $vremePristiz, $jedinica, $magacinUk, $magacinRez);
+                
+                //Dodeljivanje novih sirovina zahtevima na cekanju:
+                if($kol > $staraKol){
+                    $this->zahtevSirovinaModel->refreshAllZahtevi($id);
+                }
 	}
 	
 	

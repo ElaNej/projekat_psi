@@ -62,8 +62,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
+              
             <li> <a href="<?php echo site_url('proizvodnja/listaProizvoda/') ?>">Proizvodi</a></li>
             <li><a href="<?php echo site_url('proizvodnja/redZaProizvodnju/') ?>">Red za Proizvodnju</a></li>
+            <li><a href="<?php echo site_url('proizvodnja/showArhiva/') ?>">Arhiva</a></li>
+            <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
             
 
             

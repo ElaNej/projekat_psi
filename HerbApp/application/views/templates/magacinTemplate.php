@@ -103,8 +103,9 @@
 			<li><a href="<?php echo site_url('Magacin/azurirajStanjeSirovina'); ?>">Azuriranje stanja sirovina</a></li>
 
             <li><a href="<?php echo site_url('Magacin/PregledArhive'); ?>">Arhiva-dodatna f.ja</a></li>
-			<li><a href="<?php echo site_url('Magacin/kreirajSirovinu'); ?>">Kreiranje nove sirovine</a>
-</li>
+			<li><a href="<?php echo site_url('Magacin/kreirajSirovinu'); ?>">Kreiranje nove sirovine</a></li>
+                        
+                <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
             
           </ul>
 

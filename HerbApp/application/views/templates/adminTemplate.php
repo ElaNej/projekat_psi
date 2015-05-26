@@ -129,6 +129,7 @@
             <li><a href="<?php echo site_url('Admin/home'); ?>">Proizvodi</a></li>
             <li><a href="<?php echo site_url('Admin/sirovinePregled'); ?>">Sirovine</a></li>
             <li><a href="<?php echo site_url('Admin/home'); ?>">Nabavka</a></li>
+            <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
             
           </ul>
 

@@ -56,7 +56,7 @@ class Proizvodnja extends CI_Controller{
             }
             else{
                $isReserved = false;
-               $this->zahtevSirovinaModel->create($zahtevProizvodId, $row->idSirovina, date('Y/m/d'), date('Y/m/d'), $ukKolicina, $slobodno, 'pending');
+               $this->zahtevSirovinaModel->create($zahtevProizvodId, $row->idSirovina, date('Y/m/d'), $datum, $ukKolicina, $slobodno, 'pending');
                $this->sirovinaModel->addToRezervisano($sirovina->idSirovine, $slobodno);
             }
         }
@@ -93,7 +93,7 @@ class Proizvodnja extends CI_Controller{
         else if(strcmp($zahtev->status, 'rejected') == 0){
             
             $this->zahtevProizvodnjaModel->releaseReservedSirovine($idZahtev);
-            $this->proizvodnjaModel->updateStatus($idZahtev, 'incomplete');
+            $this->zahtevProizvodnjaModel->updateStatus($idZahtev, 'incomplete');
         }
         
         $this->redZaProizvodnju();
@@ -103,9 +103,25 @@ class Proizvodnja extends CI_Controller{
     public function rejectActiveRequest($idZahtev){
         
         $this->zahtevProizvodnjaModel->releaseReservedSirovine($idZahtev);
-        $this->proizvodnjaModel->updateStatus($idZahtev, 'incomplete');
+        $this->zahtevProizvodnjaModel->updateStatus($idZahtev, 'incomplete');
         
         $this->redZaProizvodnju();
+    }
+    
+    public function showArhiva(){
+        
+        $zahtevi = $this->zahtevProizvodnjaModel->getArchivedRequests();
+        $data = array();
+        $data['zahtevi'] = $zahtevi;
+        
+        $proizvodi = array();
+        foreach($zahtevi as $zahtev){
+            $proizvod = $this->proizvodModel->getById($zahtev->idProizvod);
+            $proizvodi[$zahtev->idProizvod] = $proizvod;
+        }
+        $data['proizvodi'] = $proizvodi;
+        
+        $this->template->load('proizvodnjaTemplate', 'proizvodnja/arhivaProizvoda', $data);
     }
 }
 ?>

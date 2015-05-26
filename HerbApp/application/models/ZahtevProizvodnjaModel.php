@@ -75,6 +75,8 @@ class ZahtevProizvodnjaModel extends CI_Model{
     //Funkcija se poziva kada se promeni status nekog zahteva za sirovinom.
     public function refreshStatus($id){
         
+        if($id < 0) return;//za slucaj da je zahtev bez proizvoda(porucila nabavka)
+        
         $zahtevi = $this->getAllZahtevSirovineForZahtevProizvod($id);
         
         $isReserved = true;
@@ -106,14 +108,14 @@ class ZahtevProizvodnjaModel extends CI_Model{
     //Prilikom potvrde o pravljenju proizvoda za koji su rezervisane sve sirovine, sirovine se oduzimaju iz magacina
     public function confirmReservedProizvod($idZahtev){
         
-        $zahteviSirovine = $this->getAllZahtevSirovineForZahtevProizvod($idZahtev);
+        $zahtevSirovine = $this->getAllZahtevSirovineForZahtevProizvod($idZahtev);
         
         foreach($zahtevSirovine as $zahtev){
             
             $sirovina = $this->sirovinaModel->getById($zahtev->idZahtevSirov);
             //Sirovine se oduzimaju i od ukupnog stanja u magacinu i od broja rezervisanih
-            $sirovina->removeFromMagacin($sirovina->idSirovine, $zahtev->kolicina);
-            $sirovina->removeFromRezervisano($sirovina->idSirovine, $zahtev->kolicina);
+            $this->sirovinaModel->removeFromMagacin($sirovina->idSirovine, $zahtev->kolicina);
+            $this->sirovinaModel->removeFromRezervisano($sirovina->idSirovine, $zahtev->kolicina);
         }
     }
     
@@ -124,6 +126,17 @@ class ZahtevProizvodnjaModel extends CI_Model{
         $this->db->where('status', 'pending');
         $this->db->or_where('status', 'rejected');
         $this->db->or_where('status', 'reserved');
+        $upit = $this->db->get();
+        
+        return $upit->result();
+        }
+        
+        public function getArchivedRequests(){
+            
+        $this->db->select();
+        $this->db->from('zahtevproizvodnja');
+        $this->db->where('status', 'complete');
+        $this->db->or_where('status', 'incomplete');
         $upit = $this->db->get();
         
         return $upit->result();
