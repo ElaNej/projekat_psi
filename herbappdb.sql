@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 13, 2015 at 03:50 PM
+-- Generation Time: May 26, 2015 at 07:10 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -38,17 +38,18 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `brTel` varchar(20) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`idKor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `korisnik`
 --
 
 INSERT INTO `korisnik` (`idKor`, `korisnickoIme`, `ime`, `prezime`, `lozinka`, `email`, `kategorija`, `zvanje`, `brTel`, `status`) VALUES
-(1, 'miki', '', '', 'miki123', '', 'zapProizvodnja', '', '', 1),
-(2, 'pera', '', '', 'pera123', '', 'zapNabavka', '', '', 1),
-(3, 'zika', '', '', 'zika123', '', 'zapMagacin', '', '', 1),
-(4, 'admin', 'Ime', 'Prezime', 'admin123', '', 'admin', '', '', 1);
+(1, 'miki', 'Milan', 'Milanovic', 'miki123', '', 'zapProizvodnja', '', '', 1),
+(2, 'pera', 'Petar', 'Peric', 'pera123', '', 'zapNabavka', '', '', 1),
+(3, 'zika', 'Zivan', 'Zivanovic', 'zika123', '', 'zapMagacin', '', '', 1),
+(4, 'admin', '', '', 'admin123', '', 'admin', '', '', 1),
+(5, 'proba', '', '', 'proba123', '', 'zapProizvodnja', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,10 @@ CREATE TABLE IF NOT EXISTS `proizvodsadrzi` (
 INSERT INTO `proizvodsadrzi` (`idProizvod`, `idSirovina`, `kolicina`) VALUES
 (1, 1, 100),
 (1, 2, 200),
-(1, 3, 150);
+(1, 3, 150),
+(3, 3, 200),
+(3, 4, 150),
+(3, 5, 100);
 
 -- --------------------------------------------------------
 
@@ -124,16 +128,18 @@ CREATE TABLE IF NOT EXISTS `sirovina` (
   `magacinUk` int(11) NOT NULL,
   `magacinRez` int(11) NOT NULL,
   PRIMARY KEY (`idSirovine`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `sirovina`
 --
 
 INSERT INTO `sirovina` (`idSirovine`, `naziv`, `serBr`, `vremePristiz`, `jedinica`, `magacinUk`, `magacinRez`) VALUES
-(1, 'nana', '56464', 11, 'g', 3000, 2000),
-(2, 'biljcica', '7657', 3, 'g', 500, 500),
-(3, 'gel', '4343', 4, 'g', 1000, 650);
+(1, 'nana', '12345', 11, 'g', 475, 475),
+(2, 'biljcica', '7657', 3, 'g', 950, 950),
+(3, 'gel', '4343', 4, 'g', 350, 350),
+(4, 'wolfsbane', '3213', 4, 'g', 400, 350),
+(5, 'koren', '534', 3, 'g', 400, 0);
 
 -- --------------------------------------------------------
 
@@ -148,15 +154,24 @@ CREATE TABLE IF NOT EXISTS `zahtevproizvodnja` (
   `kolicina` int(11) NOT NULL,
   `status` varchar(20) NOT NULL,
   PRIMARY KEY (`idZahtev`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `zahtevproizvodnja`
 --
 
 INSERT INTO `zahtevproizvodnja` (`idZahtev`, `idProizvod`, `datum`, `kolicina`, `status`) VALUES
-(2, 1, '2015-05-13', 1, 'complete'),
-(4, 1, '2015-05-20', 2, 'incomplete');
+(2, 1, '2015-05-13', 1, 'incomplete'),
+(4, 1, '2015-05-20', 2, 'incomplete'),
+(5, 1, '2015-05-30', 1, 'incomplete'),
+(6, 1, '2015-05-26', 1, 'rejected'),
+(8, 3, '2015-05-31', 2, 'complete'),
+(9, 1, '2015-05-29', 2, 'complete'),
+(10, 1, '2015-05-30', 1, 'complete'),
+(11, 1, '2015-06-07', 1, 'rejected'),
+(12, 1, '2015-06-03', 1, 'rejected'),
+(15, 1, '2015-06-03', 1, 'reserved'),
+(16, 1, '2015-06-02', 1, 'pending');
 
 -- --------------------------------------------------------
 
@@ -179,12 +194,23 @@ CREATE TABLE IF NOT EXISTS `zahtevsirovina` (
 --
 
 INSERT INTO `zahtevsirovina` (`idZahtevProiz`, `idZahtevSirov`, `datumKreiranja`, `datumComplete`, `kolicina`, `rezervisano`, `status`) VALUES
-(2, 1, '2015-05-13', '2015-05-13', 100, 100, 'complete'),
-(2, 2, '2015-05-13', '2015-05-13', 200, 200, 'complete'),
-(2, 3, '2015-05-13', '2015-05-13', 150, 150, 'complete'),
+(2, 1, '2015-05-13', '2015-05-13', 0, 0, 'rejected'),
+(2, 2, '2015-05-13', '2015-05-13', 0, 0, 'rejected'),
+(2, 3, '2015-05-13', '2015-05-13', 0, 0, 'rejected'),
 (4, 1, '2015-05-13', '2015-05-13', 200, 200, 'complete'),
-(4, 2, '2015-05-13', '2015-05-13', 400, 200, 'pending'),
-(4, 3, '2015-05-13', '2015-05-13', 300, 300, 'complete');
+(4, 2, '2015-05-13', '2015-05-26', 400, 400, 'reserved'),
+(4, 3, '2015-05-13', '2015-05-13', 300, 300, 'complete'),
+(10, 1, '2015-05-26', '2015-05-26', 100, 100, 'reserved'),
+(10, 2, '2015-05-26', '2015-05-26', 200, 200, 'reserved'),
+(10, 3, '2015-05-26', '2015-05-26', 150, 150, 'reserved'),
+(-1, 1, '2015-05-26', '2015-05-26', 100, 100, 'reserved'),
+(-1, 2, '2015-05-26', '2015-05-26', 100, 100, 'reserved'),
+(11, 1, '2015-05-26', '2015-06-07', 0, 0, 'rejected'),
+(11, 2, '2015-05-26', '2015-06-07', 0, 0, 'rejected'),
+(11, 3, '2015-05-26', '2015-06-07', 0, 0, 'rejected'),
+(16, 1, '2015-05-26', '2015-06-02', 100, 25, 'approved'),
+(16, 2, '2015-05-26', '2015-06-02', 200, 50, 'approved'),
+(16, 3, '2015-05-26', '2015-06-02', 150, 50, 'approved');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
