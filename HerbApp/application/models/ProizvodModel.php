@@ -61,7 +61,33 @@ class ProizvodModel extends CI_Model{
         $this->db->where('idProizvod', $id);
         $upit = $this->db->get();
         return $upit->result();
+		
     }
+	
+	
+	public function getByName($name){
+		
+		$svi = $this->db->get('proizvod');
+        
+        $proizvodi = $svi->result();
+         foreach($proizvodi as $proizvod){
+            if (($proizvod->naziv)===$name) {
+               return $proizvod;
+            }
+        }
+    }    
+	
+	
+	
+	public function newProizvodSadrzi($idPr,$idSir,$kol) {
+		$proizvodsad = array(
+            'idProizvod' => $idPr,
+            'idSirovina' => $idSir,
+            'kolicina' => $kol,
+            );
+		$this->db->insert('proizvodsadrzi',$proizvodsad);
+	
+	}
     
 }
 ?>

@@ -18,9 +18,8 @@
     <tr style="height:400px;" valign="middle">
 	
 		<td align=center><h4>Lista sirovina koje proizvod sadrzi:</h4></br>
-		<table class="table">
-		<div id="lista">
-		</div>
+		<table id="lista" class="table">
+		
 		</table>
 				
 		</td>
@@ -68,7 +67,7 @@
     </tr>
    
     <tr>
-        <td colspan='2' align='center'><input type='submit' name='potvrdi' value='Potvrdi' class='btn btn-success' />
+        <td colspan='2' align='center'><input type='submit' name='potvrdi' value='Potvrdi' class='btn btn-success' onClick="kreirajNov"/>
     </tr>
     
     <tr>
@@ -109,7 +108,7 @@
 <script>
 var sirnaz='';
 var sirovine=[]; //sve sirovine
-var sir={naziv:'', kolicina:0};
+var sir={'naziv':'', 'kolicina':'0'};//objekat iz niza sirovine
 
 //skripta za pretragu
  $(document).ready(function () {
@@ -149,20 +148,49 @@ if (value=='') alert("Unesite kolicinu!");
 else{
  sir={naziv:sirnaz, kolicina:value};
  sirovine.push(sir);
- 
- $("#lista").append("<tr><td>"+sir['naziv']+"</td><td>"+sir['kolicina']+"</td><td></td></tr>");
+ var ind=sirovine.length-1;
+ $("#lista").append("<tr><td>"+sir['naziv']+"</td><td>"+sir['kolicina']+"</td><td><a class='text-danger' id="+ind+" > <span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></a></td></tr>");
  $('#myModal').modal('hide');
 
- 
- 
  }
  
  
  
  });
-    
+ 
+ //skripta za uklanjanje sirovine iz niza i iz liste
 
+ $(document).on("click", "a", function(){
+    var indeks=$(this).attr('id');
+	//alert(indeks);
+	sirovine.splice(indeks,1);
+	$("#lista").html("");
+	
+	for (var i = 0, l = sirovine.length; i < l; i++) {
+    var obj = sirovine[i];
+     $("#lista").append("<tr><td>"+obj['naziv']+"</td><td>"+obj['kolicina']+"</td><td><a class='text-danger' id="+i+" > <span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span></a></td></tr>");
+	}
+	 
+	 });
+	
+//kreiranje novog proizvoda	
+ function kreirajNov()  
+  {
 
+	 var base_url = '<?php echo site_url();?>';
+	 $.ajax({
+                    url : base_url + '/admin/createProizvod',
+                    type : 'POST', //the way you want to send data to your URL
+                    data : {'sirov' : sirovine},
+					datatype:'json',
+                    success : function(res){ 
+                    },
+					error: function() {alert("error!")},
+                });
+					 
+	 }      
+
+	
 </script>
 
 
