@@ -62,7 +62,12 @@ class ZahtevProizvodnjaModel extends CI_Model{
     }
     
     public function getAll(){
-        $svi = $this->db->get('zahtevproizvodnja');
+        
+        $this->db->select();
+        $this->db->from('zahtevproizvodnja');
+        $this->db->order_by('datum','asc');
+        $svi = $this->db->get();
+        
         return $svi->result();
     }
     
@@ -131,6 +136,7 @@ class ZahtevProizvodnjaModel extends CI_Model{
         $this->db->where('status', 'pending');
         $this->db->or_where('status', 'rejected');
         $this->db->or_where('status', 'reserved');
+        $this->db->order_by('datum','desc');
         $upit = $this->db->get();
         
         return $upit->result();
@@ -142,6 +148,7 @@ class ZahtevProizvodnjaModel extends CI_Model{
         $this->db->from('zahtevproizvodnja');
         $this->db->where('status', 'complete');
         $this->db->or_where('status', 'incomplete');
+        $this->db->order_by('datum','desc');
         $upit = $this->db->get();
         
         return $upit->result();

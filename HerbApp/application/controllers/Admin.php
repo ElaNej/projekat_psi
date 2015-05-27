@@ -245,12 +245,7 @@ class Admin extends CI_Controller{
         echo json_encode($sirovine);
         
     }
-		
 			
-	
-		
-		
-		
         
         public function showNabavkaPregled(){
             
@@ -268,5 +263,64 @@ class Admin extends CI_Controller{
         $this->template->load('adminTemplate', 'admin/nabavkaPregled', $data);
         }
         
+        public function showZahtev($id){
+            
+            $zahtev = $this->zahtevProizvodnjaModel->getById($id);
+            $data['zahtev'] = $zahtev;
+            
+            $proizvod = $this->proizvodModel->getById($zahtev->idProizvod);
+            $data['proizvod'] = $proizvod;
+            
+            $sviProizvodi = $this->proizvodModel->getAll();
+            $options = array();
+            foreach($sviProizvodi as $row){
+                $options[$row->idProizvoda] = $row->naziv;
+            }
+            $data['options'] = $options;
+            //$nazivi = array('nazivProizvoda', $options, $zahtev->idProizvod);
+            //$data['nazivi'] = $nazivi;
+            
+            $this->template->load('adminTemplate', 'admin/editZahtev', $data);
+        }
+        
+        public function updateZahtev($id){
+            
+            $idProizvod = $this->input->post('nazivProizvoda');
+            $datum = $this->input->post('datum');
+            $kolicina = $this->input->post('kolicina');
+            $status = $this->input->post('status');
+            
+            $this->zahtevProizvodnjaModel->update($id, $idProizvod, $datum, $kolicina, $status);
+            $this->showNabavkaPregled();
+        }
+        
+        public function deleteZahtev($id){
+            
+            $this->zahtevProizvodnjaModel->delete($id);
+            $this->showNabavkaPregled();
+        }
+        
+        public function newZahtev(){
+            
+            $sviProizvodi = $this->proizvodModel->getAll();
+            $options = array();
+            foreach($sviProizvodi as $row){
+                $options[$row->idProizvoda] = $row->naziv;
+            }
+            $data['options'] = $options;
+            
+            $this->template->load('adminTemplate', 'admin/newZahtev', $data);
+        }
+        
+        public function createZahtev(){
+            
+            $idProizvod = $this->input->post('nazivProizvoda');
+            $datum = $this->input->post('datum');
+            $kolicina = $this->input->post('kolicina');
+            $status = $this->input->post('status');
+            
+            $this->zahtevProizvodnjaModel->create($idProizvod, $datum, $kolicina, $status);
+            $this->showNabavkaPregled();                        
+        }
 }
 ?>
