@@ -61,6 +61,11 @@ class ZahtevProizvodnjaModel extends CI_Model{
     
     }
     
+    public function getAll(){
+        $svi = $this->db->get('zahtevproizvodnja');
+        return $svi->result();
+    }
+    
     public function getAllZahtevSirovineForZahtevProizvod($id){
         
         $this->db->select();

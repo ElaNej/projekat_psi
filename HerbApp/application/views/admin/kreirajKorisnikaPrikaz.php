@@ -38,7 +38,7 @@
     <tr>
         <td><label>Kategorija:</label></td>
         <td>
-            <select name="kategorija" id="kategorija" size="4"  style="width: 199px">
+            <select name="kategorija" id="kategorija" size="4">
                 <option value="zapProizvodnja" >proizvodnja</option>
                 <option value="zapNabavka" >nabavka</option>
                 <option value="zapMagacin" >magacin</option>

@@ -136,7 +136,7 @@
             <li ><a href="<?php echo site_url('Admin/korisnici'); ?>">Zaposleni</a></li>
             <li><a href="<?php echo site_url('Admin/prozivodiPregled'); ?>">Proizvodi</a></li>
             <li><a href="<?php echo site_url('Admin/sirovinePregled'); ?>">Sirovine</a></li>
-            <li><a href="<?php echo site_url('Admin/home'); ?>">Nabavka</a></li>
+            <li><a href="<?php echo site_url('Admin/showNabavkaPregled'); ?>">Nabavka</a></li>
             <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
             
           </ul>

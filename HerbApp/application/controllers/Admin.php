@@ -216,5 +216,21 @@ class Admin extends CI_Controller{
             $this->prozivodiPregled();
         }
         
+        public function showNabavkaPregled(){
+            
+        $zahtevi = $this->zahtevProizvodnjaModel->getArchivedRequests();
+        $data = array();
+        $data['zahtevi'] = $zahtevi;
+        
+        $proizvodi = array();
+        foreach($zahtevi as $zahtev){
+            $proizvod = $this->proizvodModel->getById($zahtev->idProizvod);
+            $proizvodi[$zahtev->idProizvod] = $proizvod;
+        }
+        $data['proizvodi'] = $proizvodi;
+        
+        $this->template->load('adminTemplate', 'admin/nabavkaPregled', $data);
+        }
+        
 }
 ?>
