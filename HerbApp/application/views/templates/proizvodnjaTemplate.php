@@ -66,13 +66,12 @@
             <li> <a href="<?php echo site_url('proizvodnja/listaProizvoda/') ?>">Proizvodi</a></li>
             <li><a href="<?php echo site_url('proizvodnja/redZaProizvodnju/') ?>">Red za Proizvodnju</a></li>
             <li><a href="<?php echo site_url('proizvodnja/showArhiva/') ?>">Arhiva</a></li>
+            </ul>
+			
+		<ul class="nav navbar-nav" style="float:right">
             <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
-            
-
-            
           </ul>
-
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
  

@@ -1,4 +1,5 @@
-   <table class='table'>    <!--etfTable staro-->
+  <div class="pre-scrollable col-lg-12 col-md-12 col-sm-12">
+  <table class='table'>    <!--etfTable staro-->
         <th>Naziv</th>
         <th>Neto kolicina</th>
         <th>Serijski broj</th>
@@ -20,8 +21,10 @@
         </tr>
       <?php } ?>
     </table>
-
+</div>
             <br/> <br/>
             <?php echo form_open('admin/newProizvod/'); ?>
             <td><input type="submit" value="New" class="btn btn-success "/></td>
             <?php echo form_close(); ?>
+			
+			
