@@ -89,5 +89,27 @@ class SirovinaModel extends CI_Model{
         return $all->result();
 	}
 	
+	public function getByName($name){
+		
+		$svi = $this->db->get('sirovina');
+        
+        $sirovine = $svi->result();
+        if ($str === "none") return null;
+       
+				
+        $rez = array();
+        
+        foreach($sirovine as $sirovina){
+            if (strpos(strtolower($sirovina->naziv),strtolower($name)) === 0) {
+                array_push($rez, $sirovina);
+            }
+        }
+        
+        return $rez;
+		
+		
+	}
+	
+	
 }
 ?>
