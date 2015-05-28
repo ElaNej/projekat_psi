@@ -51,8 +51,11 @@
             <li> <a href="<?php echo site_url('nabavka/showArhiva/') ?>">Arhiva</a></li>
             <li> <a href="<?php echo site_url('nabavka/kompletanPregledMagacin/') ?>">Magacin</a></li>
             <li> <a href="<?php echo site_url('nabavka/showSirovine/') ?>">Sirovine</a></li>
-            <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
             
+            
+          </ul>
+		  <ul class="nav navbar-nav" style="float:right">
+            <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
           </ul>
 
         </div><!--/.nav-collapse -->

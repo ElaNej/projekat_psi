@@ -315,7 +315,23 @@ class Admin extends CI_Controller{
         public function createZahtevProizvodnja(){
             
             $idProizvod = $this->input->post('nazivProizvoda');
-            $datum = $this->input->post('datum');
+			
+			 $time = strtotime($this->input->post('datum'));
+             $datum = date('Y/m/d', $time);
+        
+             if(strtotime($datum) < strtotime(date('Y/m/d'))){
+               $error = 'Ne moze se uneti datum iz proslosti';
+			   $data['error'] = $error;
+			   $sviProizvodi = $this->proizvodModel->getAll();
+               $options = array();
+               foreach($sviProizvodi as $row){
+                $options[$row->idProizvoda] = $row->naziv;
+               }
+               $data['options'] = $options;
+               $this->template->load('adminTemplate', 'admin/newZahtevProizvodnja', $data);
+			   return; 
+			   }
+			
             $kolicina = $this->input->post('kolicina');
             $status = $this->input->post('status');
             
@@ -399,12 +415,27 @@ class Admin extends CI_Controller{
         public function createZahtevNabavka($idProizv){
             
             $idSirovine = $this->input->post('nazivSirovine');
-            $datum = $this->input->post('datum');
             $kolicina = $this->input->post('kolicina');
             $rezervisano = $this->input->post('rezervisano');
             $status = $this->input->post('status');
-            
-            $this->zahtevSirovinaModel->create($idProizv, $idSirovine, $datum, $datum, $kolicina, $rezervisano, $status);
+            $time = strtotime($this->input->post('datum'));
+            $datum = date('Y/m/d', $time);
+        
+             if(strtotime($datum) < strtotime(date('Y/m/d'))){
+              
+			   return; 
+			   }
+			
+			$sveSirovine = $this->sirovinaModel->getAll();
+            $options = array();
+            foreach($sveSirovine as $row){
+                $options[$row->idSirovine] = $row->naziv;
+            }
+            $data['options'] = $options;
+           
+
+
+		   $this->zahtevSirovinaModel->create($idProizv, $idSirovine, $datum, $datum, $kolicina, $rezervisano, $status);
             
             if($idProizv == -1){
                 $this->showProizvodnjaPregled();

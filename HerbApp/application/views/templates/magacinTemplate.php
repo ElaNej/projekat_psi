@@ -105,10 +105,12 @@
             <li><a href="<?php echo site_url('Magacin/PregledArhive'); ?>">Arhiva-dodatna f.ja</a></li>
 			<li><a href="<?php echo site_url('Magacin/kreirajSirovinu'); ?>">Kreiranje nove sirovine</a></li>
                         
-                <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
+                
             
           </ul>
-
+		<ul class="nav navbar-nav" style="float:right">
+            <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>

@@ -1,5 +1,18 @@
-            
-            <?php echo form_open('admin/createZahtevNabavka/'.$idProizv); ?>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+        <script>
+        $(function() {
+          $( "#datepicker" ).datepicker();
+        });
+        </script>  
+
+		
+
+
+
+		   <?php echo form_open('admin/createZahtevNabavka/'.$idProizv); ?>
 
            <table class="table">
                
@@ -15,7 +28,8 @@
                 <tr>
 		     <td>
             <label for="datum">Datum:</label>
-            <?php echo form_input('datum', ''); ?>
+            <input type="text" name ="datum" id="datepicker" placeholder="unesite datum">
+
                      </td>
                 </tr>
                 
@@ -53,4 +67,3 @@
 			</tr>
 			
            </table>
-			

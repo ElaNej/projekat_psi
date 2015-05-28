@@ -10,8 +10,17 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/nav.css'); ?>" >    
-    
-    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+        <script>
+        $(function() {
+          $( "#datepicker" ).datepicker();
+        });
+        </script>  
+
+
     
         <title>
            HerbApp Admin
@@ -138,10 +147,12 @@
             <li><a href="<?php echo site_url('Admin/prozivodiPregled'); ?>">Proizvodi</a></li>
             <li><a href="<?php echo site_url('Admin/sirovinePregled'); ?>">Sirovine</a></li>
             <li><a href="<?php echo site_url('Admin/showProizvodnjaPregled'); ?>">Zahtevi</a></li>
-            <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
+            
             
           </ul>
-
+		<ul class="nav navbar-nav" style="float:right">
+            <li><a href="<?php echo site_url('login/logout/') ?>">Logout</a></li>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
