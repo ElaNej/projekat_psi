@@ -247,7 +247,7 @@ class Admin extends CI_Controller{
     }
 			
         
-        public function showNabavkaPregled(){
+        public function showProizvodnjaPregled(){
             
         $zahtevi = $this->zahtevProizvodnjaModel->getArchivedRequests();
         $data = array();
@@ -260,10 +260,10 @@ class Admin extends CI_Controller{
         }
         $data['proizvodi'] = $proizvodi;
         
-        $this->template->load('adminTemplate', 'admin/nabavkaPregled', $data);
+        $this->template->load('adminTemplate', 'admin/proizvodnjaPregled', $data);
         }
         
-        public function showZahtev($id){
+        public function showZahtevProizvodnja($id){
             
             $zahtev = $this->zahtevProizvodnjaModel->getById($id);
             $data['zahtev'] = $zahtev;
@@ -280,10 +280,10 @@ class Admin extends CI_Controller{
             //$nazivi = array('nazivProizvoda', $options, $zahtev->idProizvod);
             //$data['nazivi'] = $nazivi;
             
-            $this->template->load('adminTemplate', 'admin/editZahtev', $data);
+            $this->template->load('adminTemplate', 'admin/editZahtevProizvodnja', $data);
         }
         
-        public function updateZahtev($id){
+        public function updateZahtevProizvodnja($id){
             
             $idProizvod = $this->input->post('nazivProizvoda');
             $datum = $this->input->post('datum');
@@ -291,16 +291,16 @@ class Admin extends CI_Controller{
             $status = $this->input->post('status');
             
             $this->zahtevProizvodnjaModel->update($id, $idProizvod, $datum, $kolicina, $status);
-            $this->showNabavkaPregled();
+            $this->showProizvodnjaPregled();
         }
         
-        public function deleteZahtev($id){
+        public function deleteZahtevProizvodnja($id){
             
             $this->zahtevProizvodnjaModel->delete($id);
-            $this->showNabavkaPregled();
+            $this->showProizvodnjaPregled();
         }
         
-        public function newZahtev(){
+        public function newZahtevProizvodnja(){
             
             $sviProizvodi = $this->proizvodModel->getAll();
             $options = array();
@@ -309,10 +309,10 @@ class Admin extends CI_Controller{
             }
             $data['options'] = $options;
             
-            $this->template->load('adminTemplate', 'admin/newZahtev', $data);
+            $this->template->load('adminTemplate', 'admin/newZahtevProizvodnja', $data);
         }
         
-        public function createZahtev(){
+        public function createZahtevProizvodnja(){
             
             $idProizvod = $this->input->post('nazivProizvoda');
             $datum = $this->input->post('datum');
@@ -320,7 +320,99 @@ class Admin extends CI_Controller{
             $status = $this->input->post('status');
             
             $this->zahtevProizvodnjaModel->create($idProizvod, $datum, $kolicina, $status);
-            $this->showNabavkaPregled();                        
+            $this->showProizvodnjaPregled();                        
         }
+        
+        /*public function showNabavkaPregled(){
+            
+            $zahtevi = $this->zahtevSirovinaModel->getAllArchived();
+
+            $sirovine = array();
+            foreach($zahtevi as $zahtev){
+                $sirovina = $this->sirovinaModel->getById($zahtev->idZahtevSirov);
+                $sirovine[$zahtev->idZahtevSirov] = $sirovina;
+            }
+
+            $data['zahtevi'] = $zahtevi;
+            $data['sirovine'] = $sirovine;
+            $this->template->load('nabavkaTemplate', 'admin/nabavkaPregled', $data);
+        }*/
+        
+        public function showZahteviSirovine($id){
+            
+            $zahtevi = $this->zahtevProizvodnjaModel->getAllZahtevSirovineForZahtevProizvod($id);
+            
+            $sirovine = array();
+            foreach($zahtevi as $zahtev){
+                $sirovina = $this->sirovinaModel->getById($zahtev->idZahtevSirov);
+                $sirovine[$zahtev->idZahtevSirov] = $sirovina;
+            }
+
+            $data['zahtevi'] = $zahtevi;
+            $data['sirovine'] = $sirovine;
+            
+            $this->template->load('adminTemplate', 'admin/zahteviSirovine', $data);
+        }
+        
+        public function showZahtevNabavka($idZahtevProiz, $idZahtevSirov){
+            
+            $zahtev = $this->zahtevSirovinaModel->getById($idZahtevProiz, $idZahtevSirov);
+            $sirovina = $this->sirovinaModel->getById($idZahtevSirov);
+            
+            $data['zahtev'] = $zahtev;
+            $data['sirovina'] = $sirovina;
+            
+            $this->template->load('adminTemplate', 'admin/editZahtevSirovina', $data);
+        }
+        
+        public function deleteZahtevNabavka($idZahtevProiz, $idZahtevSirov){
+            
+            $this->zahtevSirovinaModel->delete($idZahtevProiz, $idZahtevSirov);
+            $this->showZahteviSirovine($idZahtevProiz);
+        }
+        
+        public function updateZahtevNabavka($idZahtevProiz, $idZahtevSirov){
+
+            $datum = $this->input->post('datum');
+            $kolicina = $this->input->post('kolicina');
+            $rezervisano = $this->input->post('rezervisano');
+            $status = $this->input->post('status');
+            
+            $this->zahtevSirovinaModel->update($idZahtevProiz, $idZahtevSirov, $datum, $datum, $kolicina, $rezervisano, $status);
+            
+            $this->showZahteviSirovine($idZahtevProiz);
+        }
+        
+        public function newZahtevNabavka($idProizv){
+            
+            $sveSirovine = $this->sirovinaModel->getAll();
+            $options = array();
+            foreach($sveSirovine as $row){
+                $options[$row->idSirovine] = $row->naziv;
+            }
+            $data['options'] = $options;
+            $data['idProizv'] = $idProizv;
+            
+            $this->template->load('adminTemplate', 'admin/newZahtevNabavka', $data);
+        }
+        
+        public function createZahtevNabavka($idProizv){
+            
+            $idSirovine = $this->input->post('nazivSirovine');
+            $datum = $this->input->post('datum');
+            $kolicina = $this->input->post('kolicina');
+            $rezervisano = $this->input->post('rezervisano');
+            $status = $this->input->post('status');
+            
+            $this->zahtevSirovinaModel->create($idProizv, $idSirovine, $datum, $datum, $kolicina, $rezervisano, $status);
+            
+            if($idProizv == -1){
+                $this->showProizvodnjaPregled();
+            }
+                else{
+                    $this->showZahteviSirovine($idZahtevProizv);
+                }
+        }
+        
 }
 ?>

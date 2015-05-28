@@ -44,6 +44,21 @@ class ZahtevSirovinaModel extends CI_Model{
         $this->db->where('idZahtevSirov',$idZahtevSirov);
         $this->db->delete('zahtevsirovina');
     }
+    
+    public function getById($idZahtevProiz, $idZahtevSirov){
+        
+        $this->db->select();
+        $this->db->from('zahtevsirovina');
+        $this->db->where('idZahtevProiz',$idZahtevProiz);
+        $this->db->where('idZahtevSirov',$idZahtevSirov);
+        $upit = $this->db->get();
+        
+        $res = $upit->result();
+        if($upit->num_rows() > 0)
+        return $res[0];
+        else
+            return null;
+    }
      
     public function updateStatus($idZahtevProiz, $idZahtevSirov, $newStatus){
         
