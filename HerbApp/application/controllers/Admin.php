@@ -165,6 +165,11 @@ class Admin extends CI_Controller{
     }
     
     public function sirovinePregled(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $sirovine = $this->sirovinaModel->getAll();
             $data['sirovine'] = $sirovine;
@@ -173,6 +178,11 @@ class Admin extends CI_Controller{
         }
         
         public function showSirovina($id){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $sirovina = $this->sirovinaModel->getById($id);
             $data['sirovina'] = $sirovina;
@@ -181,6 +191,11 @@ class Admin extends CI_Controller{
         }
         
         public function updateSirovina($id, $magacinRez){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $naziv = $this->input->post('naziv');
             $serBr = $this->input->post('serBr');
@@ -194,6 +209,11 @@ class Admin extends CI_Controller{
         }
         
         public function deleteSirovina($id){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $this->sirovinaModel->delete($id);
             
@@ -201,11 +221,21 @@ class Admin extends CI_Controller{
         }
         
         public function newSirovina(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $this->template->load('adminTemplate', 'admin/novaSirovina');
         }
         
         public function createSirovina(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $naziv = $this->input->post('naziv');
             $serBr = $this->input->post('serBr');
@@ -220,6 +250,12 @@ class Admin extends CI_Controller{
     
         
         public function prozivodiPregled(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
             $proizvodi = $this->proizvodModel->getAll();
             $data['proizvodi'] = $proizvodi;
             
@@ -229,6 +265,12 @@ class Admin extends CI_Controller{
         
         
         public function newProizvod(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
             $sirovine = $this->sirovinaModel->getAll();
             $data['sirovine'] = $sirovine;
             $this->template->load('adminTemplate', 'admin/noviProizvod', $data);
@@ -238,7 +280,11 @@ class Admin extends CI_Controller{
 		
 		
         public function createProizvod(){
-			
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
 			
             $naziv = $this->input->post('naziv');
 			$serBr = $this->input->post('serbr');
@@ -260,7 +306,12 @@ class Admin extends CI_Controller{
 		
 		
         public function showProizvod($id){
-			
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
             $data = array();
             $proizvod = $this->proizvodModel->getById($id);
             $data['proizvod'] = $proizvod;
@@ -287,6 +338,12 @@ class Admin extends CI_Controller{
 		
 		
         public function updateProizvod(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 			$id=$this->input->post("idPr");
 			$naziv = $this->input->post('naziv');
 			$serBr = $this->input->post('serbr');
@@ -311,6 +368,12 @@ class Admin extends CI_Controller{
 	  
 	  
         public function deleteProizvod($id){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
             $this->proizvodModel->delete($id);
             
             $this->prozivodiPregled();
@@ -332,6 +395,11 @@ class Admin extends CI_Controller{
 			
         
         public function showProizvodnjaPregled(){
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
         $zahtevi = $this->zahtevProizvodnjaModel->getArchivedRequests();
         $data = array();
@@ -348,6 +416,11 @@ class Admin extends CI_Controller{
         }
         
         public function showZahtevProizvodnja($id){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $zahtev = $this->zahtevProizvodnjaModel->getById($id);
             $data['zahtev'] = $zahtev;
@@ -368,6 +441,11 @@ class Admin extends CI_Controller{
         }
         
         public function updateZahtevProizvodnja($id){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $idProizvod = $this->input->post('nazivProizvoda');
             $datum = $this->input->post('datum');
@@ -379,12 +457,22 @@ class Admin extends CI_Controller{
         }
         
         public function deleteZahtevProizvodnja($id){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $this->zahtevProizvodnjaModel->delete($id);
             $this->showProizvodnjaPregled();
         }
         
         public function newZahtevProizvodnja(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $sviProizvodi = $this->proizvodModel->getAll();
             $options = array();
@@ -397,6 +485,11 @@ class Admin extends CI_Controller{
         }
         
         public function createZahtevProizvodnja(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $idProizvod = $this->input->post('nazivProizvoda');
 			
@@ -439,6 +532,11 @@ class Admin extends CI_Controller{
         }*/
         
         public function showZahteviSirovine($id){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $zahtevi = $this->zahtevProizvodnjaModel->getAllZahtevSirovineForZahtevProizvod($id);
             
@@ -455,6 +553,11 @@ class Admin extends CI_Controller{
         }
         
         public function showZahtevNabavka($idZahtevProiz, $idZahtevSirov){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $zahtev = $this->zahtevSirovinaModel->getById($idZahtevProiz, $idZahtevSirov);
             $sirovina = $this->sirovinaModel->getById($idZahtevSirov);
@@ -466,13 +569,23 @@ class Admin extends CI_Controller{
         }
         
         public function deleteZahtevNabavka($idZahtevProiz, $idZahtevSirov){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $this->zahtevSirovinaModel->delete($idZahtevProiz, $idZahtevSirov);
             $this->showZahteviSirovine($idZahtevProiz);
         }
         
         public function updateZahtevNabavka($idZahtevProiz, $idZahtevSirov){
-
+$this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
             $datum = $this->input->post('datum');
             $kolicina = $this->input->post('kolicina');
             $rezervisano = $this->input->post('rezervisano');
@@ -484,6 +597,11 @@ class Admin extends CI_Controller{
         }
         
         public function newZahtevNabavka($idProizv){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $sveSirovine = $this->sirovinaModel->getAll();
             $options = array();
@@ -497,6 +615,11 @@ class Admin extends CI_Controller{
         }
         
         public function createZahtevNabavka($idProizv){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'admin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $idSirovine = $this->input->post('nazivSirovine');
             $kolicina = $this->input->post('kolicina');

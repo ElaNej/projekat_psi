@@ -3,7 +3,12 @@
 class Nabavka extends CI_Controller{
     
     public function listaZahtevi(){
-        
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapNabavka')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
         $zahteviPending = $this->zahtevSirovinaModel->getAllPending();
         
         $sirovine = array();
@@ -19,12 +24,23 @@ class Nabavka extends CI_Controller{
     
     public function potvrdiZahtev($idZahtevProiz, $idZahtevSirov){
         
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapNabavka')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
         $this->zahtevSirovinaModel->updateStatus($idZahtevProiz, $idZahtevSirov, 'approved');
         $this->listaZahtevi();
     }
     
     public function odbijZahtev($idZahtevProiz, $idZahtevSirov){
-        
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapNabavka')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
         $this->zahtevProizvodnjaModel->updateStatus($idZahtevProiz, 'rejected');
         $this->zahtevProizvodnjaModel->releaseReservedSirovine($idZahtevProiz);
         
@@ -32,7 +48,12 @@ class Nabavka extends CI_Controller{
     }
     
     public function showArhiva(){
-        
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapNabavka')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
         $zahtevi = $this->zahtevSirovinaModel->getAllArchived();
         
         $sirovine = array();
@@ -48,7 +69,12 @@ class Nabavka extends CI_Controller{
     
     //@Jecina f-ja iz Magacinlista proizvoda i sirovina u magacinu
     public function kompletanPregledMagacin(){
-        
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapNabavka')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 		$proizvodi=$this->proizvodModel->getAll();
 		$sirovine=$this->sirovinaModel->getAll();
 		$data['magacin'][1]=$proizvodi;
@@ -58,7 +84,12 @@ class Nabavka extends CI_Controller{
     }
     
     public function showSirovine(){
-        
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapNabavka')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
         $sirovine = $this->sirovinaModel->getAll();
         $data['sirovine'] = $sirovine;
         
@@ -66,7 +97,12 @@ class Nabavka extends CI_Controller{
     }
     
     public function showNewZahtev($id){
-        
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapNabavka')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
         $sirovina = $this->sirovinaModel->getById($id);
         $data['sirovina'] = $sirovina;
         
@@ -74,6 +110,12 @@ class Nabavka extends CI_Controller{
     }
     
     public function createZahtev($id){
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapNabavka')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
         $kolicina = $this->input->post('kolicina');
         
         if($kolicina < 0 || !(is_numeric($kolicina))){

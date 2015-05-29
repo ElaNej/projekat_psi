@@ -3,13 +3,23 @@
 class Proizvodnja extends CI_Controller{
  
     public function listaProizvoda(){
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapProizvodnja')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
          $proizvodi = $this->proizvodModel->getAll();
          $data['proizvodi'] = $proizvodi;
          $this->template->load('proizvodnjaTemplate', 'proizvodnja/proizvodiPregled', $data);
     }
     
     public function napraviProizvod($id){
-
+$this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapProizvodnja')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
         $proizvod = $this->proizvodModel->getById($id);
         $data['proizvod'] =  $proizvod;
         if($proizvod != null){
@@ -21,6 +31,11 @@ class Proizvodnja extends CI_Controller{
     
     //Ova f-ja rezervise sirovine ili za sve proizvode, ili samo za one koje moze
     public function rezervisiSirovine($idProizvod){
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapProizvodnja')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
         //$this->zahtevSirovinaModel->create($id, $row->idSirovina, date('Y/m/d'), date('Y/m/d'), $kolicina, 'complete');
         $proizvodSadrzi = $this->proizvodModel->getProizvodSadrzi($idProizvod);
         $proizvod  = $this->proizvodModel->getById($idProizvod);
@@ -85,7 +100,12 @@ class Proizvodnja extends CI_Controller{
     }
     
     public function redZaProizvodnju(){
-        
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapProizvodnja')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
         $zahtevi = $this->zahtevProizvodnjaModel->getActiveRequests();
         $data['zahtevi'] = $zahtevi;
         
@@ -101,7 +121,12 @@ class Proizvodnja extends CI_Controller{
     
     //Evidencija da je proizvodnja videla zahteve koji su potvrdjeni/odbijeni u potpunosti
     public function confirmActiveRequest($idZahtev){
-        
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapProizvodnja')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
         $zahtev = $this->zahtevProizvodnjaModel->getbyId($idZahtev);
         if(strcmp($zahtev->status, 'reserved') == 0){
             
@@ -119,7 +144,13 @@ class Proizvodnja extends CI_Controller{
     
     //Proizvodnja moze da odbije potvrdjene zahteve ili zahteve na cekanju
     public function rejectActiveRequest($idZahtev){
-        
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapProizvodnja')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
+            
         $this->zahtevProizvodnjaModel->releaseReservedSirovine($idZahtev);
         $this->zahtevProizvodnjaModel->updateStatus($idZahtev, 'incomplete');
         
@@ -127,7 +158,12 @@ class Proizvodnja extends CI_Controller{
     }
     
     public function showArhiva(){
-        
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapProizvodnja')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
         $zahtevi = $this->zahtevProizvodnjaModel->getArchivedRequests();
         $data = array();
         $data['zahtevi'] = $zahtevi;

@@ -64,8 +64,8 @@ class Login extends CI_Controller{
     }
     
     function logout(){
-        session_start();
-        session_destroy();
+        $this->load->library('session');
+        $this->session->sess_destroy();
         $this->template->load('myTemplate', 'login', null);
     }
 }

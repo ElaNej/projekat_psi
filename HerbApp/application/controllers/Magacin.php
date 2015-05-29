@@ -5,6 +5,11 @@ class Magacin extends CI_Controller{
  
  //lista proizvoda i sirovina u magacinu
     public function kompletanPregledMagacin(){
+        $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
 		$proizvodi=$this->proizvodModel->getAll();
 		$sirovine=$this->sirovinaModel->getAll();
 		$data['magacin'][1]=$proizvodi;
@@ -15,6 +20,12 @@ class Magacin extends CI_Controller{
 	//POCETNA ZA MAGACIN
 	//lista sirovina u magacinu 
 	public function listaMagacin(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 		$sirovine=$this->sirovinaModel->getAll();
 		$data['sirovina']=$sirovine;
 		$data['pretraga']='';
@@ -25,6 +36,12 @@ class Magacin extends CI_Controller{
 	
 	//azuriranje sirovine
 	 public function azurirajSirovinu($idSirovina){
+             $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 		$sirovina = $this->sirovinaModel->getById($idSirovina);
 		$data['sirovina'] =  $sirovina;
         if($sirovina != null){
@@ -35,6 +52,11 @@ class Magacin extends CI_Controller{
 	 //azuriranje sirovine 
 	 //Ivanova f.ja
 	 public function updateSirovina($id, $magacinRez){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
             
             $naziv = $this->input->post('naziv');
             $serBr = $this->input->post('serBr');
@@ -50,7 +72,12 @@ class Magacin extends CI_Controller{
 	
 	//arhiva-dodatna funkcionalnost
 	public function PregledArhive(){
-	
+	$this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 	$this->template->load('magacinTemplate', 'magacin/pregledArhive');
 		//todo
 	}
@@ -58,11 +85,23 @@ class Magacin extends CI_Controller{
 	//kreiranje sirovine pregled
 	
 	public function kreirajSirovinu(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 	$this->template->load('magacinTemplate', 'magacin/kreirajSirovinu');
 	}
 	
 	////Ivanova f.ja za kreiranje sirovine
 	public function createSirovina(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 			$naziv = $this->input->post('naziv');
             $serBr = $this->input->post('serBr');
             $vremePristiz = $this->input->post('vremePristiz');
@@ -77,6 +116,12 @@ class Magacin extends CI_Controller{
 	
 	//azuriranje stanja sirovine u magacinu - pregled
 	public function azurirajStanjeSirovina(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 	$sirovine=$this->sirovinaModel->getAll();
 	$data['sirovina']=$sirovine;
 	$this->template->load('magacinTemplate','magacin/azuriranjeStanjaSirovine',$data);	
@@ -85,6 +130,12 @@ class Magacin extends CI_Controller{
 	
 	//azuriranje stanja proizvoda u magacinu - pregled
 	public function azurirajStanjeProizvoda(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 	$proizvodi=$this->proizvodModel->getAll();	
 	$data['proizvod']=$proizvodi;
 	$this->template->load('magacinTemplate','magacin/azuriranjeStanjaProizvoda',$data);	
@@ -93,6 +144,12 @@ class Magacin extends CI_Controller{
 		
 	//azuriranje stanja sirovine
 	public function updateStanjeSirovina(){	
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 		$id=$this->input->post('idSir');
 		$kol=$this->input->post('Kol');
 		$sir=$this->sirovinaModel->getById($id);
@@ -115,6 +172,12 @@ class Magacin extends CI_Controller{
 	
 	//vracanje stanja u magacinu AJAX skriptica
 	public function VratiStanjeSir(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 		       $id= $this->input->post('idSir');
 			   $sir=$this->sirovinaModel->getById($id);
 			   $stanjeUk=$sir->magacinUk;
@@ -127,6 +190,12 @@ class Magacin extends CI_Controller{
 	
 	//azuriranje stanja proizvoda
 	public function updateStanjeProizvoda(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 		$id=$this->input->post('idPr');
 		$kol=$this->input->post('Kol');
 		$pr=$this->proizvodModel->getById($id);
@@ -140,6 +209,12 @@ class Magacin extends CI_Controller{
 	
 	//vracanje stanja u magacinu AJAX skriptica
 	public function VratiStanjePr(){
+            $this->load->library('session');
+            if(!($this->session->userdata('kategorija') === 'zapMagacin')){
+                echo "Nemate pravo pristupa";
+                return;
+            }
+            
 		       $id= $this->input->post('idPr');
 			   $pr=$this->proizvodModel->getById($id);
 			   $stanje=$pr->kolicinaMagacin;
