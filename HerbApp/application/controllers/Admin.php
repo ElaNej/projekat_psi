@@ -189,25 +189,23 @@ class Admin extends CI_Controller{
 		
 		
         public function createProizvod(){
-            $naziv = $_POST['naziv'];
-            $serBr = $_POST['serBr'];
-            $sirovine = $this->input->post('sirov');
+			
+			
+            $naziv = $this->input->post('naziv');
+			$serBr = $this->input->post('serbr');
+			$sirovine = $this->input->post('sirovine');
+			$kolicina=$this->input->post('kolicine');
 			$this->proizvodModel->create($naziv, 0, $serBr, 0);
 			$pr=$this->proizvodModel->getByName($naziv);
+            for($i = 0; $i < count($sirovine); ++$i) {
+				$name=$sirovine[$i];
+				$s=$this->sirovinaModel->getByName1($name);
+				$idsir=$s->idSirovine;
+			    $kol=$kolicina[$i];
+				$this->proizvodModel->newProizvodSadrzi($pr->idProizvoda,$idsir,$kol);			
 			
-			if (is_array($sirovine) || is_object($sirovine))
-					{
-       foreach ($sirovine as $val) {
-				$idsir=$this->sirovinaModel->getByName($val['naziv']);
-			    $kol=$val["kolicina"];
-				$this->proizvodModel->newProizvodSadrzi($pr->idProizvoda,$idsir,$kol);
-
-	   }
-			}
+			} 
 			
-			
-			
-            $this->prozivodiPregled();
         }
         
 		

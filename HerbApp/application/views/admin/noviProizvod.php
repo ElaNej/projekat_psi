@@ -1,6 +1,5 @@
 
 
-<?php echo form_open('admin/createProizvod'); ?>
 
 <table class="table">
     <tr >
@@ -67,13 +66,12 @@
     </tr>
    
     <tr>
-        <td colspan='2' align='center'><input type='submit' name='potvrdi' value='Potvrdi' class='btn btn-success' onClick="kreirajNov"/>
+        <td colspan='2' align='center'><input type='submit' name='potvrdi' value='Potvrdi' class='btn btn-success' onClick="kreirajNov()"/>
     </tr>
     
     <tr>
         
         <?php
-            echo form_close();
             echo form_open('Admin/prozivodiPregled');
             echo "<td colspan='2' align='center'><input type='submit' name='odustani' value='Odustani' class='btn btn-default' />";
 			echo form_close();
@@ -175,15 +173,26 @@ else{
 	
 //kreiranje novog proizvoda	
  function kreirajNov()  
-  {
-
-	 var base_url = '<?php echo site_url();?>';
-	 $.ajax({
+  {  var nazivi=[];
+	 var kolicina=[];
+	for (var i = 0, l = sirovine.length; i < l; i++) {
+		var obj = sirovine[i];
+		nazivi[i]=obj['naziv'];
+		kolicina[i]=obj['kolicina'];
+	}
+	var naziv=document.getElementById("naziv").value;
+	var serBr=document.getElementById("serBr").value;
+	//var nazivij=JSON.stringify(nazivi);
+	//var kolicinaj=JSON.stringify(kolicina);
+	//var dataToSend={ 'sirovine': nazivi, 'kolicina' : kolicina};
+	//json=JSON.stringify(dataToSend);
+	var base_url = '<?php echo site_url();?>';
+	$.ajax({
                     url : base_url + '/admin/createProizvod',
                     type : 'POST', //the way you want to send data to your URL
-                    data : {'sirov' : sirovine},
+                    data : {'sirovine' : nazivi, 'kolicine':kolicina , 'naziv' :naziv, 'serbr': serBr },
 					datatype:'json',
-                    success : function(res){ 
+                    success : function(res){ alert("Uspešno kreiran proizvod!");
                     },
 					error: function() {alert("error!")},
                 });

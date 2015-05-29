@@ -108,6 +108,20 @@ class SirovinaModel extends CI_Model{
         return $rez;
 		
 		
+		
+	}
+	public function getByName1($name){
+		
+		$svi = $this->db->get('sirovina');
+        
+        $sirovine = $svi->result();
+        if ($name === "") return null;
+
+        foreach($sirovine as $sirovina){
+            if ($sirovina->naziv===$name) return $sirovina;
+
+        }
+		
 	}
 	
 	
