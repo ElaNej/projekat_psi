@@ -31,27 +31,30 @@ class Login extends CI_Controller{
              $this->template->load('myTemplate', 'login', null);
         }
         else {
+            $this->load->library('session');
+                $newdata = array(
+                    'id'  => $korisnik->idKor,
+                    'kategorija' => $korisnik->kategorija,
+                    'ime' => $korisnik->ime,
+                    'prezime' => $korisnik->prezime,
+                    'username' => $korisnik->korisnickoIme,
+                 );
+
+            $this->session->set_userdata($newdata);
+                
             if(strcmp($korisnik->kategorija, 'zapProizvodnja') == 0){
-                session_start();
-                $_SESSION['korisnikId'] = $korisnik->idKor;
-                 redirect('proizvodnja/listaProizvoda');
-                    }
-          else if(strcmp($korisnik->kategorija, 'zapNabavka') == 0){
-                session_start();
-                $_SESSION['korisnikId'] = $korisnik->idKor;
+                redirect('proizvodnja/listaProizvoda');
+            }
+            else if(strcmp($korisnik->kategorija, 'zapNabavka') == 0){
                 redirect('nabavka/listaZahtevi');
-                    }
-          else if(strcmp($korisnik->kategorija, 'zapMagacin') == 0){
-                session_start();
-                $_SESSION['korisnikId'] = $korisnik->idKor;
+            }
+            else if(strcmp($korisnik->kategorija, 'zapMagacin') == 0){
                 redirect('magacin/listaMagacin');
-                    }
-          else if(strcmp($korisnik->kategorija, 'admin') == 0){
-                session_start();
-                $_SESSION['korisnikId'] = $korisnik->idKor;
+            }
+            else if(strcmp($korisnik->kategorija, 'admin') == 0){             
                 redirect('admin/korisnici');
-                    }
-             }
+            }
+        }
     }
 
     function registracija(){

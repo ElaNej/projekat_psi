@@ -6,11 +6,22 @@ class Admin extends CI_Controller{
     //prikazuje sve delove sistema (korisnici, nabavke, prozivdnja, narudzbine)
     public function home(){
         $this->load->library('session');
-        $this->template->load('adminTemplate', 'admin/pocetna');
+        echo $this->session->userdata('id');
+        echo $this->session->userdata('ime');
+        echo $this->session->userdata('prezime');
+        echo $this->session->userdata('kategorija');
+
+        //$this->template->load('adminTemplate', 'admin/pocetna');
     }
 
 
     public function neodobreniKorisnici(){
+        $this->load->library('session');
+        if(!($this->session->userdata('kategorija') === 'admin')){
+            echo "Nemate pravo pristupa";
+            return;
+        }
+        
         $korisnici = $this->korisnikModel->getAll();
         $data['korisnici'] = $korisnici;
         $this->load->view('admin/neodobreniKorisniciPregled', $data);
@@ -19,6 +30,12 @@ class Admin extends CI_Controller{
 
     //dodavanje, azuriranje korisnicka
     public function korisnici(){
+        $this->load->library('session');
+        if(!($this->session->userdata('kategorija') === 'admin')){
+            echo "Nemate pravo pristupa";
+            return;
+        }
+        
         $this->korisniciPregled();
         $this->neodobreniKorisnici();
     }
@@ -26,6 +43,12 @@ class Admin extends CI_Controller{
 
     //prikaz svih korisnika
     public function korisniciPregled(){
+        $this->load->library('session');
+        if(!($this->session->userdata('kategorija') === 'admin')){
+            echo "Nemate pravo pristupa";
+            return;
+        }
+        
         $korisnici = $this->korisnikModel->getAll();
         $data['korisnici'] = $korisnici;
         $this->template->load('adminTemplate', 'admin/korisniciPregled', $data);
@@ -33,6 +56,8 @@ class Admin extends CI_Controller{
 
 
     public function kreirajKorisnika(){
+        if(!isset($_POST['korisnickoIme'])) return;
+        
         $korisnickoIme = $_POST['korisnickoIme'];
         $lozinka = $_POST['lozinka'];
         $kategorija = $_POST['kategorija'];
@@ -57,6 +82,13 @@ class Admin extends CI_Controller{
         
 	
     public function obrisiKorisnika($id){
+        $this->load->library('session');
+        if(!($this->session->userdata('kategorija') === 'admin')){
+            echo "Nemate pravo pristupa";
+            return;
+        }
+        
+        if(!isset($id)) return;
         $this->korisnikModel->delete($id);
     
         $data['content'] = 'Korisnik id '.$id.' je uspesno obrisan';
@@ -65,6 +97,8 @@ class Admin extends CI_Controller{
 
     
     public function azurirajKorisnika(){
+        if(!isset($_POST['korisnickoIme'])) return;
+        
         $id = $_POST['idKor'];
         $korisnickoIme = $_POST['korisnickoIme'];
         $lozinka = $_POST['lozinka'];
@@ -85,17 +119,32 @@ class Admin extends CI_Controller{
     }
 
     public function azurirajKorisnikaPrikaz($id){
+        $this->load->library('session');
+        if(!($this->session->userdata('kategorija') === 'admin')){
+            echo "Nemate pravo pristupa";
+            return;
+        }
+        if(!isset($id)) return;
         $korisnik = $this->korisnikModel->getById($id);
         $data['korisnik'] = $korisnik;
         $this->template->load('adminTemplate', 'admin/azurirajKorisnikaPrikaz', $data);
     }
 
     public function kreirajKorisnikaPrikaz(){
+        $this->load->library('session');
+
+        
         $data['registracija'] = 0;
         $this->template->load('adminTemplate', 'admin/kreirajKorisnikaPrikaz', $data);
     }
 	
     public function prihvatiKorisnika($id){
+        $this->load->library('session');
+        if(!($this->session->userdata('kategorija') === 'admin')){
+            echo "Nemate pravo pristupa";
+            return;
+        }
+        if(!isset($id)) return;
         $korisnik = $this->korisnikModel->getById($id);
         $this->korisnikModel->update($korisnik->idKor, $korisnik->korisnickoIme, $korisnik->ime, $korisnik->prezime, $korisnik->lozinka, $korisnik->email, $korisnik->kategorija, $korisnik->zvanje, $korisnik->brTel, 1);
 
