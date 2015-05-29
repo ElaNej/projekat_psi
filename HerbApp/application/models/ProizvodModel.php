@@ -34,6 +34,9 @@ class ProizvodModel extends CI_Model{
     public function delete($id){
         $this->db->where('idProizvoda', $id);
         $this->db->delete('proizvod');
+		$this->db->where('idProizvod', $id);
+		$this->db->delete('proizvodsadrzi');
+		
     }
     
     public function getAll(){
@@ -88,6 +91,16 @@ class ProizvodModel extends CI_Model{
 		$this->db->insert('proizvodsadrzi',$proizvodsad);
 	
 	}
+	
+	public function updateproizvodsadrzi($id) {
+		
+		$this->db->where('idProizvod', $id);
+		$this->db->delete('proizvodsadrzi');
+		
+		
+	}
+	
+	
     
 }
 ?>

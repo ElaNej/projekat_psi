@@ -260,25 +260,62 @@ class Admin extends CI_Controller{
 		
 		
         public function showProizvod($id){
-            
+			
+            $data = array();
             $proizvod = $this->proizvodModel->getById($id);
             $data['proizvod'] = $proizvod;
-            
+            $sirovine = $this->sirovinaModel->getAll();
+            $data['sirovine'] = $sirovine;
+			$prSadr=$this->proizvodModel->getProizvodSadrzi($id);
+			$sirovineSadr=array();
+			$kolicinaSadr=array();
+			
+			 foreach($prSadr as $row){
+				$sirovina=$this->sirovinaModel->getById($row->idSirovina);
+                $sirovineSadr[$row->idSirovina] = $sirovina->naziv;
+				$kolicinaSadr[$row->idSirovina] = $row->kolicina;
+            }
+			
+			
+			$data['nazivi']=$sirovineSadr;
+			$data['kolicine']=$kolicinaSadr;
+			
+			
             $this->template->load('adminTemplate', 'admin/proizvodIzmena', $data);
             
         }
-        public function updateProizvod($id){
-            $naziv = $_POST['naziv'];
-            $serBr = $_POST['serBr'];
-            
-            $this->proizvodModel->update($id, $naziv, 0, $serBr, 0);
+		
+		
+        public function updateProizvod(){
+			$id=$this->input->post("idPr");
+			$naziv = $this->input->post('naziv');
+			$serBr = $this->input->post('serbr');
+			$sirovine = $this->input->post('sirovine');
+			$kolicina=$this->input->post('kolicine');
+			$this->proizvodModel->update($id, $naziv, 0, $serBr, 0);
+			
+			$this->proizvodModel->updateproizvodsadrzi($id);
+			
+			
+			for($i = 0; $i < count($sirovine); ++$i) {
+				$name=$sirovine[$i];
+				$s=$this->sirovinaModel->getByName1($name);
+				$idsir=$s->idSirovine;
+			    $kol=$kolicina[$i];
+				$this->proizvodModel->newProizvodSadrzi($id,$idsir,$kol);			
+			  // $this->proizvodModel->newProizvodSadrzi(9,9,9);
+			} 
             $this->prozivodiPregled();
         }
       
+	  
+	  
         public function deleteProizvod($id){
             $this->proizvodModel->delete($id);
             
             $this->prozivodiPregled();
+
+			
         }
 		
 		
