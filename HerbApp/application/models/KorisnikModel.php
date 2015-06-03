@@ -91,6 +91,21 @@ class KorisnikModel extends CI_Model{
         else
             return null;
     }
+    public function getByUsername($username){
+        
+        $this->db->select();
+        $this->db->from('korisnik');
+        $this->db->where('korisnickoIme', $username);
+        $upit = $this->db->get();
+
+        $res = $upit->result();
+        if($upit->num_rows() > 0)
+            return $res[0];
+        else
+            return null;
+    }
+    
+    
     
      public function getByName($str){
         $svi = $this->db->get('korisnik');
