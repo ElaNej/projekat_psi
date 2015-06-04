@@ -64,9 +64,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => 'eu-cdbr-azure-west-c.cloudapp.net',
+	'username' => 'ba1d135d13d71a',
+	'password' => '05980640',
 	'database' => 'herbappdb',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

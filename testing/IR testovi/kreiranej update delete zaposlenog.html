@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/" />
+<title>kreiranje zaposlenog</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">kreiranje zaposlenog</td></tr>
+</thead><tbody>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@value='Azuriraj'])[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=korisnickoIme</td>
+	<td>update</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ime</td>
+	<td>update</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prezime</td>
+	<td>update</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Zaposleni</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@value='Azuriraj'])[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-danger</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Zaposleni</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/HerbApp/index.php/admin/korisnici</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-success</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=korisnickoIme</td>
+	<td>User</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=lozinka</td>
+	<td>user123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=ime</td>
+	<td>Test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=prezime</td>
+	<td>Testy</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertAlert</td>
+	<td>Kategorija nije izabrana</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=submit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=username</td>
+	<td>User</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>user123</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-default</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

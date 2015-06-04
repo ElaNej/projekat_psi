@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/" />
+<title>kreiranje update delete sirovine</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">kreiranje update delete sirovine</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/HerbApp/index.php/Admin/sirovinePregled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-success</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=naziv</td>
+	<td>test sirovina</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=serBr</td>
+	<td>333</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=vremePristiz</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=magacinUk</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=magacinUk</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=jedinica</td>
+	<td>g</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-success</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@value='Izmeni'])[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=serBr</td>
+	<td>111</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=naziv</td>
+	<td>test sirovina 111</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=magacinUk</td>
+	<td>1150</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-success</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@value='Obrisi'])[6]</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
