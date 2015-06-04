@@ -1,4 +1,3 @@
- <div class="container" style=" overflow-y: scroll; height:60%">
 <h2>Zahtevi nabavka</h2>
     <table class="table">
         <th>Sirovina</th>
@@ -7,8 +6,11 @@
         <th>Datum</th>
         <th>Status</th>
         <th></th>
-        <th></th>
-        
+       <th></th>
+	   </table> 
+	    <div class="container" style=" overflow-y: scroll; height:60%">
+
+      <table class="table">
       <?php foreach ($zahtevi as $zahtev){ ?>
             <tr>
             <td><?php echo $sirovine[$zahtev->idZahtevSirov]->naziv; ?></td>

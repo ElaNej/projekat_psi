@@ -1,11 +1,26 @@
- <div class="container" style=" overflow-y: scroll; height:60%">
   <table class='table'>    <!--etfTable staro-->
-        <th>Naziv</th>
+        <th>Naziv</th>        <th></th> 
+        <th></th> 
+        <th></th> 
+        <th></th> 
+        <th></th> 
+        <th></th> 
+        <th></th> 
+        <th></th> 
+        <th></th> 
+
         <th>Neto kolicina</th>
         <th>Serijski broj</th>
         <th>Kolicina u magacinu</th>
-        <th></th>
-        
+        <th></th> 
+        <th></th> 
+        <th></th> 
+        <th></th> 
+        <th></th> 
+
+        </table>
+		 <div class="container" style=" overflow-y: scroll; height:60%">
+<table class="table">
       <?php foreach ($proizvodi as $proizvod){ ?>
         <tr>
             
