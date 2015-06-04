@@ -53,6 +53,20 @@ class SirovinaModel extends CI_Model{
         else
             return null;
     }
+    public function getByNaziv($naziv){
+        
+        $this->db->select();
+        $this->db->from('sirovina');
+        $this->db->where('naziv', $naziv);
+        $upit = $this->db->get();
+        
+        $res = $upit->result();
+        if($upit->num_rows() > 0)
+        return $res[0];
+        else
+            return null;
+    }
+    
     
     public function addToRezervisano($id, $kol){
         
