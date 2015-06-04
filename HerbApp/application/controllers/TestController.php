@@ -134,6 +134,51 @@ class TestController extends CI_Controller{
         $sirovina = $this->sirovinaModel->getById($id);
         echo $this->unit->run($sirovina, null, 'Delete sirovine');
     }
+ 
     
+    
+    
+    public function testAddToMagacin(){
+        
+        $sirovina = $this->sirovinaModel->getByNaziv('nana');
+        if($sirovina == null){
+            echo $this->unit->run(1, 0, 'Ne postoji sirovina u magacinu');
+            exit;
+        }
+        
+        $old = $sirovina->magacinUk + 5;
+
+        
+        $this->sirovinaModel->addToMagacin($sirovina->idSirovine, 5);
+        
+        $sirovina = $this->sirovinaModel->getByNaziv('nana');
+       
+        
+        echo $this->unit->run($sirovina->magacinUk, $old, 'Uspesno dodavanje pozitivne vrednosti');
+    
+    }
+    
+    
+    public function testRemoveFromMagacin(){
+        
+        $sirovina = $this->sirovinaModel->getByNaziv('nana');
+        if($sirovina == null){
+            echo $this->unit->run(1, 0, 'Ne postoji sirovina u magacinu');
+            exit;
+        }
+        
+        $old = $sirovina->magacinUk - 5;
+
+        
+        $this->sirovinaModel->removeFromMagacin($sirovina->idSirovine, 5);
+        
+        $sirovina = $this->sirovinaModel->getByNaziv('nana');
+
+        echo $this->unit->run($sirovina->magacinUk, $old, 'Add to magacin');
+    
+    }
+    
+    
+
 }
 ?>
