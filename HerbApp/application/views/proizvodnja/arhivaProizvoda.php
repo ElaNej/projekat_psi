@@ -1,4 +1,6 @@
 <h2>Arhivirani zahtevi</h2>
+ <div class="container" style=" overflow-y: scroll; height:60%">
+
    <!-- <table class='etfTable'> -->
         <table class="table">
 		
@@ -19,3 +21,4 @@
         </tr>
       <?php } ?>
     </table>
+</div>

@@ -1,11 +1,12 @@
-
 <div class="row" style="padding-top:5%;">
 						<div class="col-md-2 column"></div>
 						<div class="col-md-8 column"> 
-                                                
+
                                                 
                                                 <p>
                                                 <h2>Novi zahtevi</h2>
+												 <div class="container" style=" overflow-y: scroll; height:20%">
+
                                                 <table class="table">
                                                     <th>Ime</th>
                                                     <th>Prezime</th>
@@ -55,7 +56,7 @@
      
            
        </div>
-
+</div>
 
 
 

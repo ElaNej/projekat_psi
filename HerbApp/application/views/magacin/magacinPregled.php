@@ -20,8 +20,9 @@
 
 
 <input id="search" name="search" size="50" placeholder="Pretraga.."/><br><br>
+ <div class="container" style=" overflow-y: scroll; height:60%">
 <table id="searchDiv" class="table"></table>
-
+</div>
 
 </p>
 

@@ -1,3 +1,4 @@
+ <div class="container" style=" overflow-y: scroll; height:60%">
     <table class='table'>
         <th>Naziv</th>
         <th>Serijski broj</th>
@@ -30,7 +31,7 @@
       <?php } ?>
 
     </table>
-
+</div>
             <br/> <br/>
             <?php echo form_open('admin/newSirovina/'); ?>
             <td><input type="submit" value="Nova sirovina" class="btn btn-success"/></td>

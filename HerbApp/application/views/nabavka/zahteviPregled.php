@@ -3,7 +3,8 @@
 if(!empty($zahtevi)){
 ?>
 <h2>Zahtevi</h2>
-    <table class="table">
+ <div class="container" style=" overflow-y: scroll; height:70%">
+ <table class="table">
         <th>Sirovina</th>
         <th>Kolicina</th>
         <th>Serijski broj</th>
@@ -38,7 +39,7 @@ if(!empty($zahtevi)){
         </tr>
       <?php } ?>
     </table>
-
+</div>
 <?php } 
 else {echo 'Nema novih zahteva';}
 ?>

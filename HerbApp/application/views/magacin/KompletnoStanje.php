@@ -9,6 +9,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <div align=center>
+ <div class="container" style=" overflow-y: scroll; height:80%">
 <table  class="table" >
 <title>Pregled stanja u magacinu</title>
 	
@@ -36,6 +37,7 @@
 		
 	<?php } ?>
 </table>
+</div>
 </div>
 
 

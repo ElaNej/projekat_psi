@@ -1,5 +1,7 @@
 <h2>Aktivni zahtevi</h2>
    <!-- <table class='etfTable'> -->
+        <div class="container" style=" overflow-y: scroll; height:60%">
+
         <table class="table">
 		
         <th>Proizvod</th>
@@ -48,3 +50,4 @@
         </tr>
       <?php } ?>
     </table>
+</div>

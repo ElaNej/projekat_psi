@@ -1,5 +1,7 @@
 
 <h2>Proizvodi</h2>
+ <div class="container" style=" overflow-y: scroll; height:60%">
+
     <table class='table'>    <!--etfTable staro-->
         <th>Naziv</th>
         <th>Neto kolicina</th>
@@ -22,3 +24,4 @@
         </tr>
       <?php } ?>
     </table>    
+</div>

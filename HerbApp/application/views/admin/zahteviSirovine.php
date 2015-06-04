@@ -1,4 +1,4 @@
-
+ <div class="container" style=" overflow-y: scroll; height:60%">
 <h2>Zahtevi nabavka</h2>
     <table class="table">
         <th>Sirovina</th>
@@ -37,6 +37,7 @@
             </tr>
       <?php } ?>
     </table>
+	</div>
                 <br/><br/>
 
                 <?php

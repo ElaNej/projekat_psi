@@ -1,5 +1,6 @@
 <h2>Arhivirani zahtevi</h2>
    <!-- <table class='etfTable'> -->
+    <div class="container" style=" overflow-y: scroll; height:50%">
         <table class="table">
 		
         <th>Proizvod</th>
@@ -49,6 +50,7 @@
         </tr>
       <?php } ?>
     </table>
+	</div>
                 <br/><br/>
 
                 <?php echo form_open('admin/newZahtevProizvodnja/'); ?>       

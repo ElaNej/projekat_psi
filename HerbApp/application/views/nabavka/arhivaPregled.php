@@ -2,7 +2,8 @@
 //TODO: Zavisno od odabrane opcije(Pending, Approved, Archived) se prikazuju razliciti zahtevi
 ?>
 <h2>Arhivirani zahtevi</h2>
-    <table class="table">
+ <div class="container" style=" overflow-y: scroll; height:70%">
+ <table class="table">
         <th>Sirovina</th>
         <th>Serijski broj</th>
         <th>Kolicina</th>
@@ -23,4 +24,4 @@
         </tr>
       <?php } ?>
     </table>    
-
+</div>

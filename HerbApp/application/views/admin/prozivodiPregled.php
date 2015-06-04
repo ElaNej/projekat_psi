@@ -1,4 +1,4 @@
-  <div class="pre-scrollable col-lg-12 col-md-12 col-sm-12">
+ <div class="container" style=" overflow-y: scroll; height:60%">
   <table class='table'>    <!--etfTable staro-->
         <th>Naziv</th>
         <th>Neto kolicina</th>
@@ -24,7 +24,7 @@
 </div>
             <br/> <br/>
             <?php echo form_open('admin/newProizvod/'); ?>
-            <td><input type="submit" value="New" class="btn btn-success "/></td>
+            <td><input type="submit" value="Novi proizvod" class="btn btn-success "/></td>
             <?php echo form_close(); ?>
 			
 			

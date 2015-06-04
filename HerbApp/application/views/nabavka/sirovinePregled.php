@@ -1,4 +1,5 @@
-    <table class='table'>
+ <div class="container" style=" overflow-y: scroll; height:70%">
+ <table class='table'>
         <th>Naziv</th>
         <th>Serijski broj</th>
         <th>Vreme pristizanja(u danima)</th>
@@ -27,4 +28,4 @@
       <?php } ?>
 
     </table>
-
+</div>
