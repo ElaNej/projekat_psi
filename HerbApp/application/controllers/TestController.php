@@ -178,7 +178,46 @@ class TestController extends CI_Controller{
     
     }
     
-    
+    	public function testoviZahtevProizvodnja() {
+		$this->load->model('proizvodmodel');
+
+		$this->proizvodModel->create('testProizvod',500,33,0);
+		$pr=$this->proizvodModel->getByNaziv('testProizvod');
+		echo $this->unit->run($pr->naziv,'testProizvod', 'Uspesno kreiran proizvod');
+		$this->load->model('zahtevproizvodnjamodel');
+
+		$id=$this->zahtevProizvodnjaModel->create($pr->idProizvoda,'2015-08-26','33','');
+		$zahtev=$this->zahtevProizvodnjaModel->getById($id);
+		echo $this->unit->run($zahtev->idProizvod, $pr->idProizvoda, 'Uspesan zahtev za proizvod');
+		$this->zahtevProizvodnjaModel->update($zahtev->idZahtev,'0','0','0','updated');
+		$zahtev=$this->zahtevProizvodnjaModel->getById($id);
+		echo $this->unit->run($zahtev->status,'updated', 'Uspesan update zahteva za proizvod');
+		$this->zahtevProizvodnjaModel->delete($id);
+		$zahtev=$this->zahtevProizvodnjaModel->getById($id);
+		echo $this->unit->run($zahtev,'is_null', 'Uspesno obrisan zahtev za proizvod');
+	}
+	public function testoviGetZahtevSirovina(){
+		$this->load->model('zahtevsirovinamodel');
+		$this->zahtevsirovinamodel->create('-66',"","","","","","pending");
+		$pending=$this->zahtevsirovinamodel->getAllPending();
+		foreach ($pending as $p) {
+			if ($p->idZahtevProiz=='-66')
+				$uspesan=1;
+			} 
+		echo $this->unit->run($uspesan,1, 'Upesan getall pending');
+		$byId=$this->zahtevsirovinamodel->getById("-66","");
+		echo $this->unit->run($byId,'is_object', 'Upesan getById');
+		$this->zahtevsirovinamodel->updateStatus($byId->idZahtevProiz,$byId->idZahtevSirov,'rejected');
+		$byIdNew=$this->zahtevsirovinamodel->getById($byId->idZahtevProiz,$byId->idZahtevSirov);
+		echo $this->unit->run($byIdNew->status,'rejected', 'Upesan statusUpdate');
+		$rejected=$this->zahtevsirovinamodel->getAllarchived();
+		foreach ($rejected as $r) {
+			if ($r->idZahtevProiz==$byIdNew->idZahtevProiz)
+				$uspesan=1;
+			} 
+		echo $this->unit->run($uspesan,1, 'Upesan getall archived');
+
+	}
 
 }
 ?>
