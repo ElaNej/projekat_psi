@@ -137,7 +137,6 @@ class TestController extends CI_Controller{
  
     
     
-    
     public function testAddToMagacin(){
         
         $sirovina = $this->sirovinaModel->getByNaziv('nana');
@@ -147,15 +146,10 @@ class TestController extends CI_Controller{
         }
         
         $old = $sirovina->magacinUk + 5;
-
-        
         $this->sirovinaModel->addToMagacin($sirovina->idSirovine, 5);
-        
         $sirovina = $this->sirovinaModel->getByNaziv('nana');
-       
-        
-        echo $this->unit->run($sirovina->magacinUk, $old, 'Uspesno dodavanje pozitivne vrednosti');
-    
+        echo $this->unit->run($sirovina->magacinUk, $old, 'Uspesno dodavanje srovine u magacin');
+
     }
     
     
@@ -166,17 +160,38 @@ class TestController extends CI_Controller{
             echo $this->unit->run(1, 0, 'Ne postoji sirovina u magacinu');
             exit;
         }
-        
         $old = $sirovina->magacinUk - 5;
-
-        
         $this->sirovinaModel->removeFromMagacin($sirovina->idSirovine, 5);
-        
         $sirovina = $this->sirovinaModel->getByNaziv('nana');
-
-        echo $this->unit->run($sirovina->magacinUk, $old, 'Add to magacin');
+        echo $this->unit->run($sirovina->magacinUk, $old, 'Uspesno uzimanje sirovine iz magacina');
     
     }
+    
+    public function testZahtevSirovina(){
+        
+        $this->proizvodModel->create('testProizvod',500,33,0);
+        $proizvod = $this->proizvodModel->getByNaziv('testProizvod');
+	echo $this->unit->run($proizvod->naziv,'testProizvod', 'Uspesno kreiran proizvod');
+        
+        $this->sirovinaModel->create('testSirovina', '6789', 7, 'g', 0, 0);
+        $sirovina = $this->sirovinaModel->getByNaziv('testSirovina');
+        echo $this->unit->run($sirovina->naziv, 'testSirovina', 'Uspesno kreirana sirovina');
+        
+        $this->zahtevSirovinaModel->create($proizvod->idProizvoda, $sirovina->idSirovine, '2015-08-26', '2015-08-26', 100, 100, '');
+        $zahtev = $this->zahtevSirovinaModel->getById($proizvod->idProizvoda, $sirovina->idSirovine);
+        echo $this->unit->run($zahtev->idZahtevProiz, $proizvod->idProizvoda, 'Uspesano kreiran zahtev za sirovinu');
+     
+        $this->zahtevSirovinaModel->update($proizvod->idProizvoda, $sirovina->idSirovine, '2015-08-26', '2015-08-26', 100, 100, 'completed');
+	$zahtev = $this->zahtevSirovinaModel->getById($proizvod->idProizvoda, $sirovina->idSirovine);
+	echo $this->unit->run($zahtev->status, 'completed', 'Uspesan update zahteva za sirovinu');
+        
+        
+        $this->zahtevSirovinaModel->delete($proizvod->idProizvoda, $sirovina->idSirovine);
+	$zahtev = $this->zahtevSirovinaModel->getById($proizvod->idProizvoda, $sirovina->idSirovine);
+	echo $this->unit->run($zahtev,'is_null', 'Uspesno obrisan zahtev za sirovinu');
+        
+    }
+    
     
     	public function testoviZahtevProizvodnja() {
 		$this->load->model('proizvodmodel');
@@ -196,6 +211,8 @@ class TestController extends CI_Controller{
 		$zahtev=$this->zahtevProizvodnjaModel->getById($id);
 		echo $this->unit->run($zahtev,'is_null', 'Uspesno obrisan zahtev za proizvod');
 	}
+        
+        
 	public function testoviGetZahtevSirovina(){
 		$this->load->model('zahtevsirovinamodel');
 		$this->zahtevsirovinamodel->create('-66',"","","","","","pending");
