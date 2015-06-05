@@ -1,3 +1,4 @@
+ <div class="container" style=" overflow-y: scroll; height:70%">
  <table class='table'>
         <th>Naziv</th>
         <th>Serijski broj</th>
@@ -6,9 +7,8 @@
         <th>Slobodno u magacinu</th>
         <th>Jedinica</th>
         <th></th>
-        <th></th></table>
-         <div class="container" style=" overflow-y: scroll; height:70%">
-<table class="table">
+        <th></th>
+        
       <?php foreach ($sirovine as $sirovina){ ?>
         <tr>
             

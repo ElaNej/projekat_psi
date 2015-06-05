@@ -8,11 +8,9 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<h4>Pregled stanja u magacinu</h4>
-
  <div class="container" style=" overflow-y: scroll; height:70%">
-
 <table  class="table" >
+<title>Pregled stanja u magacinu</title>
 	
 	<?php foreach ($magacin[1] as $proizvod){ ?>
 

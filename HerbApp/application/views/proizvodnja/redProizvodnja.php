@@ -1,23 +1,16 @@
 <h2>Aktivni zahtevi</h2>
    <!-- <table class='etfTable'> -->
-       
+        <div class="container" style=" overflow-y: scroll; height:60%">
 
         <table class="table">
-		<tr>
+		
         <th>Proizvod</th>
         <th>Datum</th>
         <th>Kolicina</th>
         <th>Status</th>
         <th></th>
         <th></th>
-		<th></th>
-		<th></th>
-		<th></th>	
-		<th></th>
-		</tr>
-        </table>
-		 <div class="container" style=" overflow-y: scroll; height:60%">
-		<table class="table">
+        
       <?php foreach ($zahtevi as $zahtev){ ?>
         <tr>
             
